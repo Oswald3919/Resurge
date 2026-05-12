@@ -3,525 +3,434 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nara Florería</title>
+  <meta name="theme-color" content="#070707">
+  <meta name="description" content="RESURGE, tienda de ropa urbana premium con estetica monocromatica, drops limitados y siluetas editoriales.">
+  <title>RESURGE | Streetwear Premium</title>
 
-
- <link rel="icon" type="image/png" href="images/favicon-96x96.png" sizes="96x96" />
- <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
- <link rel="shortcut icon" href="images/favicon.ico" />
- <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
-<meta name="apple-mobile-web-app-title" content="Nara" />
-<link rel="manifest" href="/site.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="icon" type="image/png" href="images/favicon-96x96.png" sizes="96x96">
+  <link rel="shortcut icon" href="images/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="RESURGE">
+  <link rel="manifest" href="/site.webmanifest">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <!-- Font Awesome para iconos -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <header class="navbar">
-    <div class="logo">
-      <a href="#hero" class="logo-link">
-        <img src="images/logo.png" alt="Nara Florería">
-      </a>
-    </div>
+    <a href="#hero" class="brand" aria-label="Ir al inicio">
+      <span class="brand-mark">R</span>
+      <span class="brand-name">RESURGE</span>
+    </a>
 
-    <nav>
+    <nav aria-label="Navegacion principal">
       <a href="#hero">Inicio</a>
-      <a href="#about">Nosotras</a>
-      <a href="#catalog">Colección</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#festividades">Momentos</a>
-      <a href="#blog">Blog</a>
+      <a href="#drop">Manifiesto</a>
+      <a href="#catalog">Tienda</a>
+      <a href="#lookbook">Editorial</a>
+      <a href="#membership">Acceso</a>
       <a href="#contact">Contacto</a>
     </nav>
 
-    <button class="nav-toggle" aria-label="Abrir menú">
+    <a href="#catalog" class="nav-action">Comprar</a>
+
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
     </button>
   </header>
 
-  <section class="hero" id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-grain" aria-hidden="true"></div>
+      <div class="hero-line" aria-hidden="true"></div>
 
-    <div class="hero-content">
-      <span class="hero-label">Nara Florería</span>
-      <h1>Flores para momentos que merecen quedarse.</h1>
-
-      <p>
-      Diseños florales contemporáneos con intención.
-      </p>
-
-      <a href="#catalog" class="hero-cta-btn">
-        <button>Explorar colección</button>
-      </a>
-    </div>
-  </section>
-
-  <!-- NUEVA SECCIÓN: SOBRE NOSOTRAS -->
-  <section class="about reveal" id="about">
-    <div class="container">
-      <div class="about-container">
-        <div class="about-image">
-          <img src="images/equipoflorista.jpg" alt="El equipo de Nara Florería" />
+      <div class="hero-content">
+        <span class="eyebrow">Drop 01 / Monochrome Rebuild</span>
+        <h1 class="split-title" aria-label="RESURGE">
+          <span>RE</span><span>SUR</span><span>GE</span>
+        </h1>
+        <p>Ropa urbana premium en blanco, negro y carbon. Siluetas limpias, peso real y una presencia que no necesita color para imponerse.</p>
+        <div class="hero-actions">
+          <a href="#catalog" class="btn btn-primary">Ver drop</a>
+          <a href="#lookbook" class="btn btn-ghost">Ver editorial</a>
         </div>
-        <div class="about-content">
-          <div class="section-header" style="text-align: left; margin: 0;">
-            <span>La esencia detrás de Nara.</span>
-            <h2>Diseñamos flores que se sienten especiales.</h2>
-          </div>
-          
-          <div class="about-text">
-            <p>En Nara creemos que cada arreglo debe transmitir algo único. Creamos composiciones florales con atención al detalle, sensibilidad estética y una esencia contemporánea para acompañar momentos importantes.</p>
-            
-            <div class="about-signature">
-              <p>Con cariño,</p>
-              <span class="signature">El equipo de Nara</span>
+      </div>
+
+      <aside class="hero-panel reveal">
+        <span>Serie limitada</span>
+        <strong>96 piezas</strong>
+        <p>Algodon pesado, nylon mate, fits amplios y acabados tonales.</p>
+      </aside>
+    </section>
+
+    <section class="ticker" aria-label="Valores de marca">
+      <div class="ticker-track">
+        <span>Monochrome uniform</span>
+        <span>Heavy silhouettes</span>
+        <span>Limited drop</span>
+        <span>Editorial streetwear</span>
+        <span>Carbon palette</span>
+        <span>Premium essentials</span>
+      </div>
+    </section>
+
+    <section class="drop reveal" id="drop">
+      <div class="container split">
+        <div class="section-copy">
+          <span class="eyebrow">Manifiesto</span>
+          <h2>Volver a salir, pero con mas filo.</h2>
+          <p>RESURGE construye uniformes urbanos para quienes prefieren una presencia silenciosa: capas monocromaticas, volumen controlado y detalles que se descubren de cerca.</p>
+        </div>
+
+        <div class="drop-grid">
+          <article class="feature-card reveal">
+            <i class="fa-solid fa-shirt"></i>
+            <h3>Peso visual</h3>
+            <p>Prendas con cuerpo, caida amplia y cortes pensados para moverse con seguridad.</p>
+          </article>
+          <article class="feature-card reveal">
+            <i class="fa-solid fa-circle-half-stroke"></i>
+            <h3>Monocromo total</h3>
+            <p>Negro profundo, blanco roto, humo y carbon. Nada sobra, todo contrasta.</p>
+          </article>
+          <article class="feature-card reveal">
+            <i class="fa-solid fa-fingerprint"></i>
+            <h3>Detalle tonal</h3>
+            <p>Bordados discretos, etiquetas tejidas, costuras visibles y texturas mate.</p>
+          </article>
+          <article class="feature-card reveal">
+            <i class="fa-solid fa-box-open"></i>
+            <h3>Drop controlado</h3>
+            <p>Pocas unidades, empaque sobrio y atencion directa para elegir talla.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog reveal" id="catalog">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Tienda</span>
+          <h2>Drop Carbon Form</h2>
+          <p>Una seleccion compacta de piezas fuertes: tees pesadas, outerwear mate, cargos limpios y accesorios de cierre.</p>
+        </div>
+
+        <div class="filter-container" aria-label="Filtros de catalogo">
+          <button class="filter-btn active" data-filter="all">Todo</button>
+          <button class="filter-btn" data-filter="tops">Tops</button>
+          <button class="filter-btn" data-filter="outerwear">Outerwear</button>
+          <button class="filter-btn" data-filter="bottoms">Bottoms</button>
+          <button class="filter-btn" data-filter="accessories">Accesorios</button>
+        </div>
+
+        <div class="catalog-grid">
+          <article class="product-card reveal" data-category="tops">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=900&q=85" alt="Playera oversized monocromatica">
+              <span class="product-tag">Nuevo</span>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECCIÓN: BENEFICIOS -->
-  <section class="benefits reveal">
-    <div class="container">
-      <div class="benefits-grid">
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <i class="fa-solid fa-leaf"></i>
-          </div>
-          <h3>Flores naturales</h3>
-          <p>100% frescas y seleccionadas con cuidado</p>
-        </div>
-        
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <i class="fa-solid fa-gift"></i>
-          </div>
-          <h3>Empaque premium</h3>
-          <p>Presentación elegante y personalizada</p>
-        </div>
-        
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <i class="fa-solid fa-truck-fast"></i>
-          </div>
-          <h3>Entrega rápida</h3>
-          <p>Servicio puntual en Tonalá y alrededores</p>
-        </div>
-        
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-          </div>
-          <h3>Diseño personalizado</h3>
-          <p>Arreglos únicos adaptados a tus deseos</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FILTROS DE CATÁLOGO Y CATÁLOGO -->
-  <section class="catalog reveal" id="catalog">
-    <div class="container">
-      <div class="section-header">
-        <span>Colección Nara</span>
-        <h2>Flores frescas de primavera</h2>
-        <p>Arreglos inspirados en la temporada actual, con colores vibrantes y aromas frescos.</p>
-      </div>
-
-      <div class="filter-container">
-        <button class="filter-btn active" data-filter="all">Todos</button>
-        <button class="filter-btn" data-filter="romantico">Románticos</button>
-        <button class="filter-btn" data-filter="celebrar">Celebración</button>
-        <button class="filter-btn" data-filter="grande">Vistoso</button>
-      </div>
-
-      <div class="catalog-grid">
-        <article class="card reveal" data-category="romantico grande">
-          <div class="card-image-container">
-            <img src="images/rosasamarillas.jpg" alt="Arreglo Bouquet Primavera">
-          </div>
-          <div class="card-body">
-            <h3>Bouquet Primavera</h3>
-            <p class="price">$950</p>
-            <button class="card-btn-detail">Ver detalles</button>
-            <div class="card-expandable-content">
-              <div class="card-inner-text">
-                <p>Un diseño vibrante que captura la esencia de la estación. Combina girasoles seleccionados con follaje silvestre para iluminar cualquier espacio.</p>
+            <div class="product-body">
+              <div>
+                <h3>Weight Tee 420</h3>
+                <p class="price">$790 MXN</p>
               </div>
+              <button class="card-btn-detail">Ver detalles</button>
+              <div class="card-expandable-content">
+                <p>Algodon 240 gsm, cuello compacto, hombro caido y print tonal al frente. Disponible en negro y blanco roto.</p>
+              </div>
+              <a href="https://wa.me/523340187767?text=Hola%20quiero%20la%20Weight%20Tee%20420%20de%20RESURGE" class="btn btn-card" target="_blank">Comprar por WhatsApp</a>
             </div>
-            <a href="https://wa.me/523340187767?text=Hola%20quiero%20informaci%C3%B3n%20sobre%20el%20arreglo%20Bouquet%20Primavera" class="btn whatsapp">Contacto</a>
-          </div>
+          </article>
+
+          <article class="product-card reveal" data-category="outerwear tops">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=85" alt="Hoodie premium monocromatica">
+              <span class="product-tag">Signature</span>
+            </div>
+            <div class="product-body">
+              <div>
+                <h3>Rift Hoodie</h3>
+                <p class="price">$1,390 MXN</p>
+              </div>
+              <button class="card-btn-detail">Ver detalles</button>
+              <div class="card-expandable-content">
+                <p>Felpa gruesa, capucha doble, bolsillo limpio y bordado RESURGE en tono humo. La pieza central del drop.</p>
+              </div>
+              <a href="https://wa.me/523340187767?text=Hola%20quiero%20la%20Rift%20Hoodie%20de%20RESURGE" class="btn btn-card" target="_blank">Comprar por WhatsApp</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal" data-category="bottoms">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85" alt="Pantalon cargo streetwear monocromatico">
+              <span class="product-tag">Cargo</span>
+            </div>
+            <div class="product-body">
+              <div>
+                <h3>Carbon Cargo</h3>
+                <p class="price">$1,240 MXN</p>
+              </div>
+              <button class="card-btn-detail">Ver detalles</button>
+              <div class="card-expandable-content">
+                <p>Ripstop carbon, bolsillos planos, ajuste oculto y silueta recta. Funcional sin ruido visual.</p>
+              </div>
+              <a href="https://wa.me/523340187767?text=Hola%20quiero%20el%20Carbon%20Cargo%20de%20RESURGE" class="btn btn-card" target="_blank">Comprar por WhatsApp</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal" data-category="outerwear">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1506629905607-d9e297dff2f4?auto=format&fit=crop&w=900&q=85" alt="Chamarra urbana negra editorial">
+              <span class="product-tag">Limitado</span>
+            </div>
+            <div class="product-body">
+              <div>
+                <h3>Shell Jacket 01</h3>
+                <p class="price">$1,950 MXN</p>
+              </div>
+              <button class="card-btn-detail">Ver detalles</button>
+              <div class="card-expandable-content">
+                <p>Nylon mate repelente al agua, cierres negros y paneles de textura sutil para profundidad sin color.</p>
+              </div>
+              <a href="https://wa.me/523340187767?text=Hola%20quiero%20la%20Shell%20Jacket%2001%20de%20RESURGE" class="btn btn-card" target="_blank">Comprar por WhatsApp</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal" data-category="accessories">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=85" alt="Gorra negra urbana premium">
+              <span class="product-tag">Accesorio</span>
+            </div>
+            <div class="product-body">
+              <div>
+                <h3>Low Cap R</h3>
+                <p class="price">$460 MXN</p>
+              </div>
+              <button class="card-btn-detail">Ver detalles</button>
+              <div class="card-expandable-content">
+                <p>Gorra desestructurada, bordado frontal en gris humo, hebilla metalica y perfil bajo.</p>
+              </div>
+              <a href="https://wa.me/523340187767?text=Hola%20quiero%20la%20Low%20Cap%20R%20de%20RESURGE" class="btn btn-card" target="_blank">Comprar por WhatsApp</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal" data-category="tops">
+            <div class="product-media">
+              <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=900&q=85" alt="Sobrecamisa streetwear premium">
+              <span class="product-tag">Premium</span>
+            </div>
+            <div class="product-body">
+              <div>
+                <h3>Void Overshirt</h3>
+                <p class="price">$1,140 MXN</p>
+              </div>
+              <button class="card-btn-detail">Ver detalles</button>
+              <div class="card-expandable-content">
+                <p>Lona suave, botones mate, corte boxy y bolsillo interior. Una capa limpia para elevar el uniforme.</p>
+              </div>
+              <a href="https://wa.me/523340187767?text=Hola%20quiero%20la%20Void%20Overshirt%20de%20RESURGE" class="btn btn-card" target="_blank">Comprar por WhatsApp</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="lookbook reveal" id="lookbook">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Editorial</span>
+          <h2>La ciudad en escala de grises.</h2>
+        </div>
+        <div class="lookbook-grid">
+          <article class="look look-large reveal">
+            <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=85" alt="Editorial de moda urbana monocromatica">
+            <div class="look-copy">
+              <span>Frame 01</span>
+              <h3>Clean Noise</h3>
+            </div>
+          </article>
+          <article class="look reveal">
+            <img src="https://images.unsplash.com/photo-1484516758160-6f7a878a2b9c?auto=format&fit=crop&w=900&q=85" alt="Outfit urbano premium en escala de grises">
+            <div class="look-copy">
+              <span>Frame 02</span>
+              <h3>After Dark</h3>
+            </div>
+          </article>
+          <article class="look reveal">
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=85" alt="Moda streetwear editorial">
+            <div class="look-copy">
+              <span>Frame 03</span>
+              <h3>White Static</h3>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="membership reveal" id="membership">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Acceso</span>
+          <h2>Primero el drop. Luego el resto.</h2>
+          <p>Elige tu nivel de acceso a RESURGE. Todos incluyen aviso anticipado, guia de tallas y atencion directa.</p>
+        </div>
+
+        <div class="packages-container">
+          <article class="package-card reveal">
+            <h3>Public</h3>
+            <span class="price-amount">$0</span>
+            <ul class="package-features">
+              <li><i class="fa-solid fa-check"></i> Avisos de drop</li>
+              <li><i class="fa-solid fa-check"></i> Guia de tallas</li>
+              <li><i class="fa-solid fa-check"></i> Compra por WhatsApp</li>
+            </ul>
+            <a href="https://wa.me/523340187767?text=Hola%20quiero%20entrar%20al%20acceso%20Public%20de%20RESURGE" class="package-btn" target="_blank">Entrar</a>
+          </article>
+
+          <article class="package-card featured reveal">
+            <span class="featured-label">Recomendado</span>
+            <h3>First Row</h3>
+            <span class="price-amount">$199</span>
+            <ul class="package-features">
+              <li><i class="fa-solid fa-check"></i> Acceso 24 h antes</li>
+              <li><i class="fa-solid fa-check"></i> Preventa limitada</li>
+              <li><i class="fa-solid fa-check"></i> Envio prioritario</li>
+            </ul>
+            <a href="https://wa.me/523340187767?text=Hola%20quiero%20el%20acceso%20First%20Row%20de%20RESURGE" class="package-btn" target="_blank">Reservar</a>
+          </article>
+
+          <article class="package-card reveal">
+            <h3>Archive</h3>
+            <span class="price-amount">$499</span>
+            <ul class="package-features">
+              <li><i class="fa-solid fa-check"></i> Piezas de archivo</li>
+              <li><i class="fa-solid fa-check"></i> Styling personal</li>
+              <li><i class="fa-solid fa-check"></i> Empaque coleccionable</li>
+            </ul>
+            <a href="https://wa.me/523340187767?text=Hola%20quiero%20el%20acceso%20Archive%20de%20RESURGE" class="package-btn" target="_blank">Solicitar</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof reveal">
+      <div class="container proof-grid">
+        <article>
+          <strong>4.9/5</strong>
+          <span>Calificacion promedio</span>
         </article>
-
-        <article class="card reveal" data-category="celebrar grande romantico">
-          <div class="card-image-container">
-            <img src="images/rosasrosas.jpg" alt="Arreglo Jardín Estival">
-          </div>
-          <div class="card-body">
-            <h3>PinkyPromise</h3>
-            <p class="price">$500</p>
-            <button class="card-btn-detail">Ver detalles</button>
-            <div class="card-expandable-content">
-              <div class="card-inner-text">
-                <p>La delicadeza hecha flores. Una composición de rosas en tonos pasteles que simboliza ternura y promesas eternas.</p>
-              </div>
-            </div>
-            <a href="https://wa.me/523340187767?text=Hola%20quiero%20informaci%C3%B3n%20sobre%20el%20arreglo%20Jard%C3%ADn%20Estival" class="btn whatsapp">Contacto</a>
-          </div>
+        <article>
+          <strong>48 h</strong>
+          <span>Despacho promedio</span>
         </article>
-
-        <article class="card reveal" data-category="romantico">
-          <div class="card-image-container">
-            <img src="images/rosasconverde.jpg" alt="Arreglo Flores del Campo">
-          </div>
-          <div class="card-body">
-            <h3>Flores del Campo</h3>
-            <p class="price">$460</p>
-            <button class="card-btn-detail">Ver detalles</button>
-            <div class="card-expandable-content">
-              <div class="card-inner-text">
-                <p>Sencillez y elegancia natural. Un arreglo que evoca la frescura de un prado matutino, ideal para momentos espontáneos.</p>
-              </div>
-            </div>
-            <a href="https://wa.me/523340187767?text=Hola%20quiero%20informaci%C3%B3n%20sobre%20el%20arreglo%20Flores%20del%20Campo" class="btn whatsapp">Contacto</a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- NUEVA SECCIÓN: PORTFOLIO -->
-  <section class="portfolio reveal" id="portfolio">
-    <div class="container">
-      <div class="section-header">
-        <span>Nuestro Trabajo</span>
-        <h2>Creaciones para momentos únicos</h2>
-        <p>Una muestra de los arreglos florales y decoraciones que hemos creado.</p>
-      </div>
-
-      <div class="portfolio-grid">
-        <div class="portfolio-item">
-          <img src="images/cajaconrosas.jpg" alt="Portfolio Nara Florería">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIOS -->
-  <section class="testimonials reveal">
-    <div class="container">
-      <div class="section-header">
-        <span>Testimonios</span>
-        <h2>Lo que dicen nuestros clientes</h2>
-      </div>
-
-      <div class="testimonials-container">
-        <div class="testimonial-card">
-          <p>"Llegué a Nara buscando algo diferente. Quedé impresionado con la calidad de las flores y su atención al detalle."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-info">
-              <h4>Manuel Ortiz</h4>
-              <span>Cliente desde 2025</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p>"Elegante, delicado y con una presentación impecable."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-info">
-              <h4>Laura Vázquez</h4>
-              <span>Sorpresa para su pareja</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <p>"Todo llegó perfectamente cuidado. El arreglo se veía incluso mejor en persona."</p>
-          <div class="testimonial-author">
-            <div class="testimonial-info">
-              <h4>Carla y Daniel</h4>
-              <span>Cliente desde 2025</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BLOG -->
-  <section class="blog reveal" id="blog">
-    <div class="container">
-      <div class="section-header">
-        <span>Notas Florales</span>
-        <h2>Blog de Nara</h2>
-      </div>
-
-      <div class="blog-grid">
-        <article class="blog-card">
-          <div class="blog-image">
-            <img src="images/secandose.jpg" alt="Cuidados">
-          </div>
-          <div class="blog-content">
-            <h3>Cómo hacer que tus flores duren más</h3>
-            <button class="blog-btn-trigger">Leer más</button>
-            <div class="blog-expandable-content">
-              <div class="blog-inner-text">
-                <p>Para maximizar la vida de tus flores, corta los tallos en diagonal cada dos días y cambia el agua por una fresca. Mantén el arreglo lejos de la luz solar directa y de corrientes de aire frío.</p>
-              </div>
-            </div>
-          </div>
-        </article>
-        <article class="blog-card">
-          <div class="blog-image">
-            <img src="images/significadodeflores.jpg" alt="Significado">
-          </div>
-          <div class="blog-content">
-            <h3>El lenguaje secreto de las flores</h3>
-            <button class="blog-btn-trigger">Leer más</button>
-            <div class="blog-expandable-content">
-              <div class="blog-inner-text">
-                <p>Cada variedad transmite un mensaje único. Las rosas rosadas simbolizan gratitud y aprecio, mientras que las peonías representan la prosperidad y el honor en un matrimonio feliz.</p>
-              </div>
-            </div>
-          </div>
-        </article>
-        <article class="blog-card">
-          <div class="blog-image">
-            <img src="images/tendenciasflorales.jpg" alt="Tendencias">
-          </div>
-          <div class="blog-content">
-            <h3>Tendencias florales para este año</h3>
-            <button class="blog-btn-trigger">Leer más</button>
-            <div class="blog-expandable-content">
-              <div class="blog-inner-text">
-                <p>Este año predominan los arreglos asimétricos con toques de flores silvestres. Los tonos pasteles y las texturas mixtas con follaje seco están ganando popularidad en eventos premium.</p>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- MOMENTOS -->
-  <section class="festividades reveal" id="festividades">
-    <div class="container">
-      <div class="section-header">
-        <span>Momentos Nara</span>
-        <h2>Celebraciones con sensibilidad</h2>
-      </div>
-
-      <div class="catalog-grid">
-        <article class="card">
-          <div class="card-image-container">
-            <img src="images/ramocumpleaños.jpg" alt="Día de las madres">
-          </div>
-          <div class="card-body">
-            <h3>Para celebrar</h3>
-            <p>Flores para cumpleaños, aniversarios y momentos importantes.</p>
-            <button class="card-btn-detail">Ver detalles</button>
-            <div class="card-expandable-content">
-              <div class="card-inner-text">
-                <p>Nuestros diseños para celebraciones están pensados para transmitir alegría. Utilizamos una paleta de colores vibrantes y texturas variadas que hacen de cada regalo un momento inolvidable.</p>
-              </div>
-            </div>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-image-container">
-            <img src="images/paraemocionar.jpg" alt="Novias">
-          </div>
-          <div class="card-body">
-            <h3>Para sorprender</h3>
-            <p>Detalles florales diseñados para emocionar.</p>
-            <button class="card-btn-detail">Ver detalles</button>
-            <div class="card-expandable-content">
-              <div class="card-inner-text">
-                <p>La sorpresa perfecta reside en los detalles. Estos arreglos combinan elegancia y sutileza, ideales para dejar una huella profunda en quien los recibe.</p>
-              </div>
-            </div>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-image-container">
-            <img src="images/personalizados.jpg" alt="Personalizados">
-          </div>
-          <div class="card-body">
-            <h3>Personalizados</h3>
-            <p>Arreglos únicos para tu propia historia.</p>
-            <button class="card-btn-detail">Ver detalles</button>
-            <div class="card-expandable-content">
-              <div class="card-inner-text">
-                <p>Cuéntanos tu idea y la haremos realidad. Trabajamos de la mano contigo para seleccionar las flores y el estilo que mejor representen tu mensaje personal.</p>
-              </div>
-            </div>
-          </div>
+        <article>
+          <strong>96</strong>
+          <span>Piezas por drop</span>
         </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FAQ -->
-  <section class="faq reveal">
-    <div class="container">
-      <div class="section-header">
-        <span>FAQ</span>
-        <h2>Resolvemos tus dudas</h2>
-      </div>
-
-      <div class="faq-container">
-        <div class="faq-item">
-          <div class="faq-question">
-            <h3>¿Realizan entregas a domicilio?</h3>
-            <i class="fa-solid fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Sí, realizamos entregas en toda la zona metropolitana de Guadalajara. Contamos con servicio express.</p>
-          </div>
+    <section class="faq reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">FAQ</span>
+          <h2>Antes de cerrar el pedido.</h2>
         </div>
-        <div class="faq-item">
-          <div class="faq-question">
-            <h3>¿Cuánto tiempo duran los arreglos?</h3>
-            <i class="fa-solid fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Nuestros arreglos están diseñados para durar entre 7 y 10 días en óptimas condiciones.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="packages reveal">
-    <div class="container">
-      <div class="section-header">
-        <span>Paquetes Nara</span>
-        <h2>Encuentra el arreglo perfecto</h2>
-        <p>Nuestros diseños son creados con las flores más frescas y de la más alta calidad.</p>
-      </div>
-
-      <div class="packages-container">
-        <div class="package-card reveal">
-          <h3>Paquete Romántico</h3>
-          <span class="price-amount">$1,500</span>
-          <ul class="package-features">
-            <li><i class="fa-solid fa-check"></i> Flores de temporada</li>
-            <li><i class="fa-solid fa-check"></i> Tarjeta personalizada</li>
-            <li><i class="fa-solid fa-check"></i> Envoltura elegante</li>
-          </ul>
-          <a href="https://wa.me/523340187767?text=Hola%20quiero%20informaci%C3%B3n%20sobre%20el%20Paquete%20Romántico" class="package-btn">Seleccionar</a>
-        </div>
-
-        <div class="package-card featured reveal">
-          <h3>Paquete Elegante</h3>
-          <span class="price-amount">$2,200</span>
-          <ul class="package-features">
-            <li><i class="fa-solid fa-check"></i> Flores premium seleccionadas</li>
-            <li><i class="fa-solid fa-check"></i> Tarjeta caligráfica</li>
-            <li><i class="fa-solid fa-check"></i> Caja de lujo</li>
-          </ul>
-          <a href="https://wa.me/523340187767?text=Hola%20quiero%20informaci%C3%B3n%20sobre%20el%20Paquete%20Elegante" class="package-btn">Seleccionar</a>
-        </div>
-
-        <div class="package-card reveal">
-          <h3>Paquete Premium</h3>
-          <span class="price-amount">$3,000</span>
-          <ul class="package-features">
-            <li><i class="fa-solid fa-check"></i> Flores exclusivas importadas</li>
-            <li><i class="fa-solid fa-check"></i> Caja de regalo signature</li>
-            <li><i class="fa-solid fa-check"></i> Diseño personalizado</li>
-          </ul>
-          <a href="https://wa.me/523340187767?text=Hola%20quiero%20informaci%C3%B3n%20sobre%20el%20Paquete%20Premium" class="package-btn">Seleccionar</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECCIÓN DE CONTACTO -->
-  <section class="contact reveal" id="contact">
-    <div class="container">
-      <div class="contact-grid">
-        <div class="contact-info">
-          <div class="section-header" style="text-align: left; margin: 0;">
-            <span>Contacto Nara</span>
-            <h2>Estamos listos para crear algo especial</h2>
-            <p>Escribe, llama o ven a conocernos en Tonalá, Jalisco.</p>
-          </div>
-
-          <div style="margin-top: 48px;">
-            <p style="margin-bottom: 24px;"><strong>Ubicación:</strong><br>Avenida Magnolia 142, Tonalá, Jalisco</p>
-            <p style="margin-bottom: 24px;"><strong>Horario:</strong><br>Lun - Vie: 9:00 AM - 6:00 PM<br>Sáb: 10:00 AM - 2:00 PM</p>
-            <div class="social-links" style="display: flex; gap: 24px;">
-              <a href="https://instagram.com/nara.floreria" style="color: var(--text); text-decoration: none; font-weight: 600;">Instagram</a>
-              <a href="https://facebook.com/nara.floreria" style="color: var(--text); text-decoration: none; font-weight: 600;">Facebook</a>
+        <div class="faq-container">
+          <article class="faq-item">
+            <button class="faq-question">
+              <span>Las prendas vienen oversized?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Si. La mayoria de piezas tienen fit relajado u oversized. Si prefieres ajuste mas recto, pide una talla menos.</p>
             </div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question">
+              <span>Hacen cambios de talla?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Aceptamos cambios dentro de los primeros 7 dias si la prenda conserva etiquetas y empaque original.</p>
+            </div>
+          </article>
+          <article class="faq-item">
+            <button class="faq-question">
+              <span>Cuando sale el siguiente drop?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Los accesos se anuncian primero a la lista RESURGE. Normalmente liberamos nuevas piezas cada 6 a 8 semanas.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact reveal" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <span class="eyebrow">Contacto</span>
+          <h2>Compra con guia real.</h2>
+          <p>Escribenos para confirmar tallas, disponibilidad o apartar piezas antes de que el drop cierre.</p>
+          <div class="contact-details">
+            <p><strong>Showroom:</strong> Guadalajara, Jalisco</p>
+            <p><strong>Horario:</strong> Lun - Sab / 11:00 - 20:00</p>
+            <p><strong>Instagram:</strong> @resurge.mx</p>
           </div>
         </div>
 
         <form class="contact-form">
           <div class="form-group">
             <label for="name">Nombre</label>
-            <input type="text" id="name" name="name" placeholder="Tu nombre" />
+            <input type="text" id="name" name="name" placeholder="Tu nombre" required>
           </div>
-
           <div class="form-group">
             <label for="numero">WhatsApp</label>
-            <input type="tel" id="numero" name="numero" placeholder="Tu número" />
+            <input type="tel" id="numero" name="numero" placeholder="Tu numero">
           </div>
-
           <div class="form-group">
             <label for="message">Mensaje</label>
-            <textarea id="message" name="message" rows="5" placeholder="Cuéntanos qué arreglo quieres"></textarea>
+            <textarea id="message" name="message" rows="5" placeholder="Quiero la Rift Hoodie talla L..." required></textarea>
           </div>
-
-          <button type="submit" class="contact-submit">Enviar mensaje</button>
+          <button type="submit" class="contact-submit">Enviar por WhatsApp</button>
         </form>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-brand">
-          <h3>Nara</h3>
-          <p>Arreglos románticos y personalizados con un estilo sencillo y lujoso.</p>
-          <div class="footer-social-links">
-            <a href="https://instagram.com/nara.floreria" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://facebook.com/nara.floreria" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://wa.me/523340187767" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          </div>
-        </div>
-
-        <div class="footer-contact">
-          <p>
-            <a href="https://www.google.com/maps/search/?api=1&query=Avenida+Magnolia+142,+Tonalá,+Jalisco" target="_blank">Tonalá, Jalisco</a> 
-            &nbsp;•&nbsp; 
-            <a href="tel:+523340187767">+52 33 4018 7767</a> 
-            &nbsp;•&nbsp; 
-            <a href="mailto:contacto@narafloreria.com">contacto@narafloreria.com</a>
-          </p>
-        </div>
+    <div class="container footer-grid">
+      <div>
+        <a href="#hero" class="footer-brand">RESURGE</a>
+        <p>Streetwear premium monocromatico. Piezas limitadas para construir presencia sin ruido.</p>
       </div>
-
-      <p class="footer-copy">© 2026 Nara. Todos los derechos reservados.</p>
+      <div class="footer-links">
+        <a href="#catalog">Tienda</a>
+        <a href="#lookbook">Editorial</a>
+        <a href="#membership">Acceso</a>
+      </div>
+      <div class="footer-social-links">
+        <a href="https://instagram.com/resurge.mx" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/resurge.mx" aria-label="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/523340187767" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
     </div>
+    <p class="footer-copy">© 2026 RESURGE. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- Botón flotante de WhatsApp -->
-  <a href="https://wa.me/523340187767" class="whatsapp-float" target="_blank">
+  <a href="https://wa.me/523340187767" class="whatsapp-float" target="_blank" aria-label="Abrir WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
 
   <script src="script.js"></script>
-
 </body>
 </html>

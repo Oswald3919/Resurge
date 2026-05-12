@@ -1,6 +1,6 @@
 {
-  "name": "Nara",
-  "short_name": "Nara",
+  "name": "RESURGE",
+  "short_name": "RESURGE",
   "icons": [
     {
       "src": "images/web-app-manifest-192x192.png",
@@ -15,7 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#f7f3ea",
-  "background_color": "#f7f3ea",
+  "theme_color": "#0b0c10",
+  "background_color": "#0b0c10",
   "display": "standalone"
 }
