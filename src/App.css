@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24..48,300..700,0..1,-50..200&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 :root {
   --bg: #071326;
@@ -68,20 +68,6 @@ a {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-}
-
-.material-symbols-rounded {
-  font-family: 'Material Symbols Rounded';
-  font-weight: normal;
-  font-style: normal;
-  line-height: 1;
-  letter-spacing: 0;
-  text-transform: none;
-  white-space: nowrap;
-  direction: ltr;
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
-  font-feature-settings: 'liga';
 }
 
 .desktop-nav {
@@ -627,7 +613,13 @@ textarea {
   background: rgba(255, 255, 255, 0.045);
   font-size: 1.32rem;
   line-height: 1;
-  font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 100, 'opsz' 32;
+}
+
+.timeline-icon svg {
+  display: block;
+  width: 64%;
+  height: 64%;
+  overflow: visible;
 }
 
 .timeline-copy h3 {

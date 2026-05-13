@@ -226,6 +226,69 @@ function todayISO() {
   return `${now.getFullYear()}-${month}-${day}`
 }
 
+function TimelineIcon({ name }) {
+  const commonProps = {
+    viewBox: '0 0 48 48',
+    fill: 'none',
+    xmlns: 'http://www.w3.org/2000/svg',
+    focusable: 'false',
+    'aria-hidden': 'true',
+  }
+
+  const strokeProps = {
+    stroke: 'currentColor',
+    strokeWidth: 2.8,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+  }
+
+  switch (name) {
+    case 'contact':
+      return (
+        <svg {...commonProps}>
+          <rect x="8" y="13" width="32" height="24" rx="6" {...strokeProps} />
+          <path d="m10 17 14 11 14-11" {...strokeProps} />
+          <path d="M35 8.5v6M32 11.5h6" {...strokeProps} />
+        </svg>
+      )
+    case 'plan':
+      return (
+        <svg {...commonProps}>
+          <circle cx="24" cy="12" r="5" {...strokeProps} />
+          <circle cx="13" cy="34" r="5" {...strokeProps} />
+          <circle cx="35" cy="34" r="5" {...strokeProps} />
+          <path d="M21.8 16.5 15.2 29.2M26.2 16.5l6.6 12.7M18.5 34h11" {...strokeProps} />
+        </svg>
+      )
+    case 'design':
+      return (
+        <svg {...commonProps}>
+          <path d="M10 36.5c8.5 2.6 16.4 2.4 24 0" {...strokeProps} />
+          <path d="M24 8 12 26l12 10 12-10L24 8Z" {...strokeProps} />
+          <path d="M24 8v27.5M12 26h24" {...strokeProps} />
+          <circle cx="24" cy="26" r="3.8" fill="currentColor" />
+        </svg>
+      )
+    case 'code':
+      return (
+        <svg {...commonProps}>
+          <path d="m19 16-9 8 9 8M29 16l9 8-9 8M26 11l-4 26" {...strokeProps} />
+          <path d="M12 9h24a4 4 0 0 1 4 4v22a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V13a4 4 0 0 1 4-4Z" {...strokeProps} opacity="0.45" />
+        </svg>
+      )
+    case 'launch':
+      return (
+        <svg {...commonProps}>
+          <path d="M27 34c6.8-3.3 11-10.4 11.5-23.5C25.4 11 18.3 15.2 15 22l-4 9 9-4" {...strokeProps} />
+          <path d="m20 27 7 7M14 34l-4 4M18 38l-2 3M10 30l-3 2" {...strokeProps} />
+          <circle cx="30.5" cy="18.5" r="3.5" {...strokeProps} />
+        </svg>
+      )
+    default:
+      return null
+  }
+}
+
 function App() {
   const location = useLocation()
   return <AppLayout key={location.pathname} location={location} />
@@ -396,35 +459,35 @@ function HomePage() {
   const processTimeline = [
     {
       step: '01',
-      icon: 'mark_email_unread',
+      icon: 'contact',
       accent: 'aqua',
       title: 'Contacto',
       text: 'Recibimos tu idea y definimos objetivo principal del sitio.',
     },
     {
       step: '02',
-      icon: 'hub',
+      icon: 'plan',
       accent: 'gold',
       title: 'Planeación',
       text: 'Ordenamos estructura, alcance y prioridades del proyecto.',
     },
     {
       step: '03',
-      icon: 'design_services',
+      icon: 'design',
       accent: 'violet',
       title: 'Diseño',
       text: 'Creamos una interfaz limpia, clara y enfocada en confianza.',
     },
     {
       step: '04',
-      icon: 'code_blocks',
+      icon: 'code',
       accent: 'cyan',
       title: 'Desarrollo',
       text: 'Construimos la web responsive con base técnica estable.',
     },
     {
       step: '05',
-      icon: 'rocket_launch',
+      icon: 'launch',
       accent: 'lime',
       title: 'Entrega',
       text: 'Publicamos, validamos y dejamos el sitio listo para operar.',
@@ -544,7 +607,9 @@ function HomePage() {
               <span className="timeline-glow" aria-hidden="true" />
               <div className="timeline-pin">
                 <span className="timeline-number">{step.step}</span>
-                <span className="timeline-icon material-symbols-rounded" aria-hidden="true">{step.icon}</span>
+                <span className="timeline-icon">
+                  <TimelineIcon name={step.icon} />
+                </span>
               </div>
               <div className="timeline-copy">
                 <h3>{step.title}</h3>
