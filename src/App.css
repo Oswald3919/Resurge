@@ -131,12 +131,36 @@ a { color: inherit; text-decoration: none; }
 
 .page-wrap { width: 100%; padding-top: 1rem; }
 
+.home-spacious {
+  margin-top: clamp(2rem, 8vh, 5.2rem) !important;
+}
+
 .page-hero {
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: clamp(1rem, 3vw, 2.4rem);
   background: linear-gradient(140deg, var(--surface-2), #ffffff 72%);
   box-shadow: 0 16px 40px rgba(20, 41, 78, 0.08);
+}
+
+.home-hero-clean {
+  min-height: min(78vh, 760px);
+  display: grid;
+  align-content: center;
+  gap: 0.4rem;
+}
+
+.hero-clean-actions {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.scroll-hint {
+  color: var(--muted);
+  letter-spacing: 0.03em;
 }
 
 .hero-light { position: relative; overflow: hidden; }
@@ -157,13 +181,13 @@ a { color: inherit; text-decoration: none; }
 .headline-line { display: inline-block; }
 .page-hero p { margin: 1rem 0 0; max-width: 68ch; line-height: 1.6; color: var(--muted); }
 
-.feature-grid { margin-top: 1rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; }
+.feature-grid { margin-top: 1rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
 .feature-card { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); padding: 0.9rem; }
 .feature-card .symbol { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--line); color: var(--accent); font-weight: 800; }
 .feature-card h3 { margin: 0.65rem 0 0; }
 .feature-card p { margin: 0.35rem 0 0; color: var(--muted); }
 
-.visual-band { margin-top: 1rem; display: grid; grid-template-columns: 1.35fr 0.65fr; gap: 0.8rem; }
+.visual-band { margin-top: 1rem; display: grid; grid-template-columns: 1.35fr 0.65fr; gap: 1rem; }
 .mini-chart, .donut-card { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); padding: 0.95rem; box-shadow: 0 10px 28px rgba(20, 41, 78, 0.06); }
 .mini-chart h3, .donut-card h3 { margin: 0; }
 .bars { margin-top: 0.8rem; display: grid; gap: 0.5rem; }
@@ -183,7 +207,7 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid var(--line);
   border-radius: 16px;
   background: var(--surface);
-  padding: clamp(0.9rem, 2.2vw, 1.4rem);
+  padding: clamp(1rem, 3vw, 1.8rem);
   box-shadow: 0 10px 28px rgba(20, 41, 78, 0.06);
 }
 
@@ -194,7 +218,7 @@ a { color: inherit; text-decoration: none; }
 .process-item { border: 1px solid var(--line); border-radius: 10px; padding: 0.7rem 0.8rem; background: var(--surface-2); }
 .process-item p { margin: 0; }
 
-.stats-row { margin-top: 1rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem; }
+.stats-row { margin-top: 1rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
 .stats-row article { border: 1px solid var(--line); border-radius: 14px; background: linear-gradient(145deg, var(--surface), var(--surface-2)); padding: 0.9rem; }
 .stats-row strong { font-size: clamp(1.5rem, 4vw, 2.2rem); }
 .stats-row p { margin: 0.5rem 0 0; color: var(--muted); line-height: 1.5; }
@@ -206,7 +230,7 @@ a { color: inherit; text-decoration: none; }
 .faq-grid h3 { margin: 0; font-size: 1rem; }
 .faq-grid p { margin: 0.5rem 0 0; color: var(--muted); }
 
-.showcase-grid { margin-top: 1rem; display: grid; gap: 0.9rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.showcase-grid { margin-top: 1rem; display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .showcase-card { position: relative; min-height: 320px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
 .showcase-card img { width: 100%; height: 100%; object-fit: cover; }
 .showcase-content { position: absolute; inset: auto 0 0; padding: 1rem; background: linear-gradient(to top, rgba(17, 34, 62, 0.9), rgba(17, 34, 62, 0.12)); color: #eef5ff; }
@@ -326,6 +350,16 @@ a { color: inherit; text-decoration: none; }
 
   .menu-toggle { display: inline-flex; justify-self: end; }
   .mobile-overlay { display: block; }
+
+  .home-hero-clean {
+    min-height: auto;
+  }
+
+  .hero-clean-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
 
   .toolbar,
   .catalog-toolbar,

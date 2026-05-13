@@ -402,19 +402,28 @@ function HomePage() {
 
   return (
     <main className="page-wrap">
-      <section className="page-hero reveal hero-light">
+      <section className="page-hero reveal hero-light home-hero-clean">
         <p className="eyebrow">alpha web agency</p>
         <h1>
           <span className="headline-line-wrap"><span className="headline-line">Diseño elegante.</span></span>
           <span className="headline-line-wrap"><span className="headline-line">Experiencia divertida.</span></span>
           <span className="headline-line-wrap"><span className="headline-line">Resultados reales.</span></span>
         </h1>
-        <p>
-          alpha crea páginas que se ven premium y convierten, sin verse rígidas ni aburridas.
-        </p>
+        <p>Webs premium que convierten sin parecer una plantilla más.</p>
+        <div className="hero-clean-actions">
+          <a
+            className="solid-btn cta-inline"
+            href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20alpha,%20quiero%20una%20propuesta%20para%20mi%20marca`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Hablar con alpha
+          </a>
+          <span className="scroll-hint">Desliza para descubrir ↓</span>
+        </div>
       </section>
 
-      <section className="feature-grid reveal">
+      <section className="feature-grid reveal home-spacious">
         {features.map((item) => (
           <article key={item.title} className="feature-card">
             <span className="symbol">{item.icon}</span>
@@ -424,7 +433,7 @@ function HomePage() {
         ))}
       </section>
 
-      <section className="visual-band reveal">
+      <section className="visual-band reveal home-spacious">
         <article className="mini-chart">
           <h3>Impacto Promedio</h3>
           <div className="bars">
@@ -440,7 +449,7 @@ function HomePage() {
         </article>
       </section>
 
-      <section className="process-section reveal">
+      <section className="process-section reveal home-spacious">
         <div className="section-title-row">
           <h2>Cómo funciona alpha</h2>
           <p>Simple, ágil y enfocado en resultados.</p>
@@ -454,7 +463,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="stats-row reveal">
+      <section className="stats-row reveal home-spacious">
         <article>
           <strong>+220%</strong>
           <p>ventas online</p>
@@ -469,7 +478,7 @@ function HomePage() {
         </article>
       </section>
 
-      <section className="testimonials reveal">
+      <section className="testimonials reveal home-spacious">
         <div className="section-title-row">
           <h2>Lo que dicen nuestros clientes</h2>
           <p>Resultados que se sienten en marca y en caja.</p>
@@ -484,7 +493,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="faq-section reveal">
+      <section className="faq-section reveal home-spacious">
         <div className="section-title-row">
           <h2>Preguntas frecuentes</h2>
           <p>Rápido y directo.</p>
@@ -505,7 +514,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="secondary-demo-section reveal">
+      <section className="secondary-demo-section reveal home-spacious">
         <div className="section-title-row">
           <h2>Demos de funcionalidades (secundario)</h2>
           <p>Ejemplos interactivos de lo que podemos construir.</p>
@@ -529,17 +538,10 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="home-cta reveal">
+      <section className="home-cta reveal home-spacious">
         <h2>Listo para que tu marca se vea top y venda mejor?</h2>
         <p>Escribenos y te enviamos propuesta inicial orientada a resultados.</p>
-        <a
-          className="solid-btn cta-inline"
-          href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20alpha,%20quiero%20una%20propuesta%20para%20mi%20marca`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Hablar con alpha
-        </a>
+        <a className="solid-btn cta-inline" href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20alpha,%20quiero%20una%20propuesta%20para%20mi%20marca`} target="_blank" rel="noreferrer">Hablar con alpha</a>
       </section>
     </main>
   )
