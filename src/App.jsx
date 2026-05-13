@@ -370,18 +370,55 @@ function AppLayout({ location }) {
 }
 
 function HomePage() {
-  const features = [
-    { icon: '✦', title: 'Diseño premium', text: 'Imagen fuerte y limpia desde el primer vistazo.' },
-    { icon: '◎', title: 'UX inteligente', text: 'Recorridos pensados para vender y retener.' },
-    { icon: '▣', title: 'Dev de alto nivel', text: 'React rápido, escalable y mantenible.' },
-    { icon: '↗', title: 'Optimización', text: 'Mejoras continuas con datos reales.' },
+  const services = [
+    {
+      icon: '01',
+      title: 'Sitios corporativos',
+      text: 'Creamos páginas web modernas para negocios que quieren verse profesionales.',
+    },
+    {
+      icon: '02',
+      title: 'Landing pages',
+      text: 'Diseñamos sitios rápidos, claros y listos para vender con mensajes precisos.',
+    },
+    {
+      icon: '03',
+      title: 'Tiendas y catálogos',
+      text: 'Implementamos experiencias de compra ordenadas, confiables y fáciles de administrar.',
+    },
+    {
+      icon: '04',
+      title: 'Rediseño UX/UI',
+      text: 'Mejoramos estructuras existentes para aumentar claridad y confianza desde el primer vistazo.',
+    },
   ]
 
   const processSteps = [
-    { step: '01', title: 'Discovery', text: 'Objetivos, público y ventaja competitiva.' },
-    { step: '02', title: 'Concepto', text: 'Dirección visual + arquitectura de conversión.' },
-    { step: '03', title: 'Build', text: 'Desarrollo, motion y performance técnico.' },
-    { step: '04', title: 'Escala', text: 'Medición, iteración y crecimiento continuo.' },
+    { step: '01', title: 'Diagnóstico', text: 'Entendemos objetivos, público y tono de marca.' },
+    { step: '02', title: 'Diseño', text: 'Definimos estructura, estilo visual y jerarquía de contenido.' },
+    { step: '03', title: 'Desarrollo', text: 'Construimos una web estable, rápida y lista para operar.' },
+    { step: '04', title: 'Publicación', text: 'Ajustamos detalles finales y dejamos una base preparada para crecer.' },
+  ]
+
+  const trustPoints = [
+    {
+      title: 'Comunicación clara',
+      text: 'Trabajamos con alcance definido, entregas visibles y decisiones documentadas.',
+    },
+    {
+      title: 'Diseño funcional',
+      text: 'Cada sección tiene un propósito: informar mejor, orientar y facilitar contacto.',
+    },
+    {
+      title: 'Base técnica sólida',
+      text: 'Cuidamos rendimiento, responsive y mantenibilidad desde el inicio del proyecto.',
+    },
+  ]
+
+  const sampleProjects = [
+    { name: 'Sitio institucional para despacho contable', type: 'Web corporativa', status: 'Estructura clara y formulario de contacto' },
+    { name: 'Landing para servicio médico local', type: 'Captación de leads', status: 'Mensaje directo y CTA principal visible' },
+    { name: 'Página para estudio de arquitectura', type: 'Portafolio visual', status: 'Galería optimizada y navegación simple' },
   ]
 
   return (
@@ -393,12 +430,12 @@ function HomePage() {
         />
         <div className="home-cinematic-overlay" />
         <div className="home-cinematic-content">
-          <p className="eyebrow">alpha web agency</p>
+          <p className="eyebrow">ALPHA · agencia web</p>
           <h1>
-            <span className="headline-line-wrap"><span className="headline-line">Webs que se ven finas.</span></span>
-            <span className="headline-line-wrap"><span className="headline-line">Experiencias que atrapan.</span></span>
+            <span className="headline-line-wrap"><span className="headline-line">Tu página debe generar</span></span>
+            <span className="headline-line-wrap"><span className="headline-line">confianza desde el primer vistazo.</span></span>
           </h1>
-          <p>Lo esencial primero. Lo demás lo descubres al bajar.</p>
+          <p>Convertimos ideas en experiencias web limpias, funcionales y atractivas para marcas que quieren crecer con orden.</p>
         </div>
         <div className="hero-clean-actions">
           <a
@@ -407,9 +444,9 @@ function HomePage() {
             target="_blank"
             rel="noreferrer"
           >
-            Hablar con alpha
+            Pedir cotización
           </a>
-          <span className="scroll-hint">Baja para ver cómo trabajamos ↓</span>
+          <span className="scroll-hint">Conoce nuestro proceso</span>
         </div>
       </section>
 
@@ -421,14 +458,18 @@ function HomePage() {
           />
         </article>
         <article className="about-copy">
-          <p className="eyebrow">quienes somos</p>
-          <h2>Somos alpha: estrategia, diseño y desarrollo en un solo equipo.</h2>
-          <p>Trabajamos con marcas que quieren verse mejor, comunicar más claro y convertir más.</p>
+          <p className="eyebrow">Inicio</p>
+          <h2>ALPHA diseña y desarrolla sitios web profesionales para negocios reales.</h2>
+          <p>Nos enfocamos en crear páginas claras, rápidas y bien estructuradas para que tu marca se vea confiable en cualquier dispositivo.</p>
         </article>
       </section>
 
       <section className="feature-grid reveal home-spacious">
-        {features.map((item) => (
+        <div className="section-intro">
+          <p className="eyebrow">Qué hacemos</p>
+          <h2>Diseño y desarrollo web con foco comercial y ejecución limpia.</h2>
+        </div>
+        {services.map((item) => (
           <article key={item.title} className="feature-card">
             <span className="symbol">{item.icon}</span>
             <h3>{item.title}</h3>
@@ -438,24 +479,23 @@ function HomePage() {
       </section>
 
       <section className="stats-row reveal home-spacious">
-        <article>
-          <strong>+220%</strong>
-          <p>ventas online</p>
-        </article>
-        <article>
-          <strong>-42%</strong>
-          <p>rebote mobile</p>
-        </article>
-        <article>
-          <strong>4.9/5</strong>
-          <p>satisfacción cliente</p>
-        </article>
+        <div className="section-intro">
+          <p className="eyebrow">Por qué elegir ALPHA</p>
+          <h2>Trabajo honesto, enfoque práctico y estándares profesionales.</h2>
+        </div>
+        {trustPoints.map((point) => (
+          <article key={point.title}>
+            <strong>{point.title}</strong>
+            <p>{point.text}</p>
+          </article>
+        ))}
       </section>
 
       <section className="process-section reveal home-spacious">
         <div className="section-title-row">
-          <h2>Cómo funcionamos</h2>
-          <p>Sin vueltas: método claro y ejecución rápida.</p>
+          <p className="eyebrow">Proceso de trabajo</p>
+          <h2>Un flujo claro para diseñar, construir y lanzar sin fricción.</h2>
+          <p>Tomamos decisiones con contexto y cuidamos cada entrega para que sea útil desde el primer día.</p>
         </div>
         <div className="process-list">
           {processSteps.map((step) => (
@@ -470,8 +510,9 @@ function HomePage() {
 
       <section className="faq-section reveal home-spacious">
         <div className="section-title-row">
-          <h2>Preguntas frecuentes</h2>
-          <p>Todo lo básico para arrancar.</p>
+          <p className="eyebrow">Contacto</p>
+          <h2>Preguntas frecuentes antes de iniciar.</h2>
+          <p>Información breve para tomar una decisión con claridad.</p>
         </div>
         <div className="faq-grid">
           <article>
@@ -491,8 +532,9 @@ function HomePage() {
 
       <section className="secondary-demo-section reveal home-spacious">
         <div className="section-title-row">
-          <h2>Demos de funcionalidades (secundario)</h2>
-          <p>Ejemplos interactivos de lo que podemos construir.</p>
+          <p className="eyebrow">Demos</p>
+          <h2>Explora tres demos funcionales construidas en esta misma web.</h2>
+          <p>Catálogo premium, tienda de ropa y reservación en restaurante con interacción real.</p>
         </div>
         <div className="showcase-grid">
           {showcasePages.map((page) => (
@@ -513,10 +555,27 @@ function HomePage() {
         </div>
       </section>
 
+      <section className="process-section reveal home-spacious">
+        <div className="section-title-row">
+          <p className="eyebrow">Proyectos de ejemplo</p>
+          <h2>Referencias de solución según tipo de negocio.</h2>
+        </div>
+        <div className="process-list">
+          {sampleProjects.map((project) => (
+            <article key={project.name} className="process-item">
+              <span>{project.type}</span>
+              <h3>{project.name}</h3>
+              <p>{project.status}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="home-cta reveal home-spacious">
-        <h2>Listo para que tu marca se vea top y venda mejor?</h2>
-        <p>Escribenos y te enviamos propuesta inicial orientada a resultados.</p>
-        <a className="solid-btn cta-inline" href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20alpha,%20quiero%20una%20propuesta%20para%20mi%20marca`} target="_blank" rel="noreferrer">Hablar con alpha</a>
+        <p className="eyebrow">CTA · pedir cotización</p>
+        <h2>Cuéntanos qué necesitas y te enviamos una propuesta clara para tu sitio web.</h2>
+        <p>Definimos alcance, tiempos y siguiente paso sin promesas exageradas ni métricas inventadas.</p>
+        <a className="solid-btn cta-inline" href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20ALPHA,%20quiero%20cotizar%20mi%20pagina%20web`} target="_blank" rel="noreferrer">Pedir cotización</a>
       </section>
     </main>
   )
