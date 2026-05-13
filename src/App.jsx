@@ -6,90 +6,86 @@ import './App.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const phoneNumber = '523340187767'
+
 const services = [
   {
-    title: 'Web de Alto Impacto',
-    description: 'Experiencias web que convierten visitas en ventas con diseño, velocidad y narrativa visual.',
-    tag: 'Brand + Conversion',
+    title: 'Brand Sites',
+    detail: 'Webs de marca con narrativa visual y estructura enfocada en conversion.',
+    metric: 'Desde 3 semanas',
   },
   {
-    title: 'Ecommerce Escalable',
-    description: 'Tiendas optimizadas para crecimiento con journeys claros, UX premium y performance extremo.',
-    tag: 'Commerce + CRO',
+    title: 'Landing Systems',
+    detail: 'Sistemas de landing pages para campanas, captacion y pruebas continuas.',
+    metric: 'CRO continuo',
   },
   {
-    title: 'Animaciones Pro',
-    description: 'Microinteracciones y motion systems que elevan percepción de marca y tiempo de permanencia.',
-    tag: 'GSAP + Framer',
+    title: 'Motion Direction',
+    detail: 'Animacion con intencion: transiciones, scroll stories y microinteracciones.',
+    metric: 'GSAP + Framer',
   },
 ]
 
-const process = [
-  'Descubrimos la meta de negocio y diseñamos la estrategia digital.',
-  'Creamos UI/UX con identidad visual clara y prototipo interactivo.',
-  'Desarrollamos en React con enfoque en performance y SEO técnico.',
-  'Lanzamos, medimos y optimizamos para escalar resultados.',
+const stats = [
+  { value: '+142%', label: 'conversion promedio' },
+  { value: '-38%', label: 'rebote en mobile' },
+  { value: '4.9/5', label: 'satisfaccion clientes' },
 ]
 
 const navItems = [
   { label: 'Servicios', href: '#services' },
-  { label: 'Proceso', href: '#process' },
+  { label: 'Resultados', href: '#results' },
   { label: 'Contacto', href: '#contact' },
 ]
 
 function App() {
   const pageRef = useRef(null)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.nav', {
-        y: -30,
+      gsap.from('.nav-shell', {
+        y: -35,
         opacity: 0,
-        duration: 0.8,
+        duration: 0.7,
         ease: 'power3.out',
       })
 
-      gsap.from('.hero-title .line', {
-        yPercent: 120,
+      gsap.from('.title-reveal > span', {
+        yPercent: 110,
         opacity: 0,
-        duration: 1,
+        duration: 0.9,
         ease: 'power4.out',
-        stagger: 0.1,
+        stagger: 0.09,
       })
 
-      gsap.to('.hero-orb', {
-        y: 28,
-        x: 20,
-        repeat: -1,
-        yoyo: true,
-        duration: 4,
-        ease: 'sine.inOut',
+      gsap.from('.hero-grid > *', {
+        opacity: 0,
+        y: 30,
+        duration: 0.9,
+        stagger: 0.12,
+        delay: 0.2,
       })
 
-      gsap.utils.toArray('.reveal').forEach((item) => {
-        gsap.from(item, {
-          y: 60,
+      gsap.utils.toArray('.reveal').forEach((el) => {
+        gsap.from(el, {
           opacity: 0,
-          duration: 0.9,
+          y: 46,
+          duration: 0.8,
           ease: 'power3.out',
           scrollTrigger: {
-            trigger: item,
-            start: 'top 80%',
+            trigger: el,
+            start: 'top 82%',
             toggleActions: 'play none none reverse',
           },
         })
       })
 
-      gsap.to('.parallax-grid', {
-        yPercent: -18,
+      gsap.to('.noise-line', {
+        backgroundPositionX: '220px',
         ease: 'none',
-        scrollTrigger: {
-          trigger: '.hero',
-          scrub: 1,
-          start: 'top top',
-          end: 'bottom top',
-        },
+        repeat: -1,
+        duration: 8,
       })
     }, pageRef)
 
@@ -97,31 +93,33 @@ function App() {
   }, [])
 
   useEffect(() => {
-    document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => {
       document.body.style.overflow = ''
     }
-  }, [mobileMenuOpen])
+  }, [menuOpen])
 
-  const closeMenu = () => setMobileMenuOpen(false)
+  const whatsappLink = `https://wa.me/${phoneNumber}?text=Hola%20alpha,%20quiero%20una%20web%20de%20alto%20impacto`;
 
   return (
-    <div className="page" ref={pageRef}>
-      <header className="nav">
-        <span className="brand">alpha</span>
+    <div className="site" ref={pageRef}>
+      <header className="nav-shell">
+        <a href="#top" className="wordmark">alpha</a>
 
-        <nav className="desktop-nav">
+        <nav className="main-nav">
           {navItems.map((item) => (
             <a key={item.href} href={item.href}>{item.label}</a>
           ))}
         </nav>
 
+        <a href={whatsappLink} className="nav-cta" target="_blank" rel="noreferrer">WhatsApp</a>
+
         <button
           type="button"
-          className={`menu-toggle ${mobileMenuOpen ? 'open' : ''}`}
-          onClick={() => setMobileMenuOpen((prev) => !prev)}
+          className={`menu-btn ${menuOpen ? 'open' : ''}`}
+          onClick={() => setMenuOpen((prev) => !prev)}
           aria-label="Abrir menu"
-          aria-expanded={mobileMenuOpen}
+          aria-expanded={menuOpen}
         >
           <span />
           <span />
@@ -129,144 +127,89 @@ function App() {
       </header>
 
       <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            className="mobile-menu"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="mobile-menu-panel"
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 30, opacity: 0 }}
-              transition={{ duration: 0.25 }}
-            >
+        {menuOpen && (
+          <motion.div className="mobile-layer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <motion.div className="mobile-card" initial={{ y: 28, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 28, opacity: 0 }}>
               {navItems.map((item) => (
-                <a key={item.href} href={item.href} onClick={closeMenu}>{item.label}</a>
+                <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>
               ))}
-              <motion.button
-                whileTap={{ scale: 0.98 }}
-                className="btn btn-primary"
-                type="button"
-                onClick={closeMenu}
-              >
-                Empezar proyecto
-              </motion.button>
+              <a href={whatsappLink} onClick={() => setMenuOpen(false)} target="_blank" rel="noreferrer">Contactar alpha</a>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <main>
-        <section className="hero">
-          <div className="hero-copy">
-            <p className="kicker">Agencia web de nueva generacion</p>
-            <h1 className="hero-title">
-              <span className="line-wrap"><span className="line">Creamos webs</span></span>
-              <span className="line-wrap"><span className="line">que venden,</span></span>
-              <span className="line-wrap"><span className="line">enamoran y escalan.</span></span>
-            </h1>
-            <p className="hero-subtitle">
-              En alpha mezclamos estrategia, diseno y desarrollo para lanzar experiencias web que se sienten premium y convierten mejor.
-            </p>
-            <div className="hero-actions">
-              <motion.button
-                whileHover={{ y: -3, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="btn btn-primary"
-                type="button"
-              >
-                Iniciar proyecto
-              </motion.button>
-              <motion.button
-                whileHover={{ y: -3 }}
-                whileTap={{ scale: 0.98 }}
-                className="btn btn-ghost"
-                type="button"
-              >
-                Ver casos
-              </motion.button>
-            </div>
-          </div>
+      <main id="top">
+        <section className="hero-frame">
+          <div className="noise-line" aria-hidden="true" />
 
-          <div className="hero-visual">
-            <div className="hero-orb" />
-            <div className="parallax-grid" />
-            <motion.div
-              className="hero-card"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <p>+187%</p>
-              <span>Incremento promedio en conversiones</span>
-            </motion.div>
+          <div className="hero-grid">
+            <div className="hero-left">
+              <p className="eyebrow">digital studio - web design & development</p>
+              <h1 className="title-reveal">
+                <span>alpha diseña</span>
+                <span>experiencias web</span>
+                <span>que se sienten caras.</span>
+              </h1>
+              <p className="lead">
+                Estrategia, estilo y tecnologia para negocios que quieren verse premium y vender mas en desktop y mobile.
+              </p>
+              <div className="hero-actions">
+                <motion.a whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }} href={whatsappLink} target="_blank" rel="noreferrer" className="btn solid">Iniciar por WhatsApp</motion.a>
+                <motion.a whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }} href="#services" className="btn outline">Explorar servicios</motion.a>
+              </div>
+            </div>
+
+            <div className="hero-right">
+              <div className="panel top">
+                <small>NOW BUILDING</small>
+                <strong>alpha.mx</strong>
+                <p>Interfaces sobrias, motion elegante y estructura pensada para conversion.</p>
+              </div>
+              <div className="panel bottom">
+                {stats.map((stat) => (
+                  <div key={stat.label}>
+                    <span>{stat.value}</span>
+                    <p>{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
-        <section id="services" className="section reveal">
-          <div className="section-heading">
-            <p className="kicker">Servicios</p>
-            <h2>Todo lo necesario para dominar digitalmente</h2>
+        <section id="services" className="reveal section">
+          <div className="section-head">
+            <p className="eyebrow">servicios alpha</p>
+            <h2>Un enfoque visual totalmente distinto, sin plantillas genericas.</h2>
           </div>
-          <div className="cards">
-            {services.map((service) => (
-              <motion.article
-                key={service.title}
-                className="card"
-                whileHover={{ y: -8, rotateX: 3, rotateY: -3 }}
-                transition={{ type: 'spring', stiffness: 280, damping: 22 }}
-              >
-                <span className="chip">{service.tag}</span>
+
+          <div className="service-stack">
+            {services.map((service, index) => (
+              <motion.article key={service.title} className="service-item" whileHover={{ x: 6 }} transition={{ type: 'spring', stiffness: 260, damping: 22 }}>
+                <span>0{index + 1}</span>
                 <h3>{service.title}</h3>
-                <p>{service.description}</p>
+                <p>{service.detail}</p>
+                <small>{service.metric}</small>
               </motion.article>
             ))}
           </div>
         </section>
 
-        <section id="process" className="section reveal">
-          <div className="section-heading">
-            <p className="kicker">Proceso</p>
-            <h2>Metodologia clara, ejecucion impecable</h2>
-          </div>
-          <div className="timeline">
-            {process.map((item, index) => (
-              <motion.div
-                key={item}
-                className="timeline-item"
-                initial={{ opacity: 0, x: -24 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.6, delay: index * 0.08 }}
-              >
-                <span className="step">0{index + 1}</span>
-                <p>{item}</p>
-              </motion.div>
-            ))}
-          </div>
+        <section id="results" className="reveal section result-band">
+          <h2>Tu marca no necesita otra web bonita. Necesita una web que produzca.</h2>
+          <a href={whatsappLink} target="_blank" rel="noreferrer" className="btn solid">Hablar con alpha - 3340187767</a>
         </section>
 
-        <section id="contact" className="section cta reveal">
-          <h2>Tu siguiente web puede ser brutal</h2>
-          <p>Si quieres una presencia digital que se vea premium y ademas rinda, armemos algo grande juntos.</p>
-          <motion.button
-            whileHover={{ scale: 1.03, boxShadow: '0 0 0 8px rgba(255,255,255,0.1)' }}
-            whileTap={{ scale: 0.98 }}
-            className="btn btn-primary"
-            type="button"
-          >
-            Agendar llamada
-          </motion.button>
+        <section id="contact" className="reveal section contact-block">
+          <p className="eyebrow">contacto directo</p>
+          <h2>Escribenos y te enviamos propuesta inicial en menos de 24 horas.</h2>
+          <div className="contact-links">
+            <a href={whatsappLink} target="_blank" rel="noreferrer">WhatsApp: 3340187767</a>
+            <span>Marca: alpha</span>
+          </div>
         </section>
       </main>
-
-      <footer className="footer">
-        <span>alpha</span>
-        <small>Web Agency - Crafted with React, Framer Motion and GSAP</small>
-      </footer>
     </div>
   )
 }
