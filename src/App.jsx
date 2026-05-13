@@ -371,45 +371,35 @@ function AppLayout({ location }) {
 
 function HomePage() {
   const features = [
-    { icon: '◉', title: 'Estrategia', text: 'Negocio primero, diseño después.' },
-    { icon: '△', title: 'UX + Motion', text: 'Interfaces claras y memorables.' },
-    { icon: '▦', title: 'Desarrollo', text: 'React rápido, escalable y SEO.' },
-    { icon: '↗', title: 'Crecimiento', text: 'Optimización continua de conversión.' },
+    { icon: '✦', title: 'Diseño premium', text: 'Imagen fuerte y limpia desde el primer vistazo.' },
+    { icon: '◎', title: 'UX inteligente', text: 'Recorridos pensados para vender y retener.' },
+    { icon: '▣', title: 'Dev de alto nivel', text: 'React rápido, escalable y mantenible.' },
+    { icon: '↗', title: 'Optimización', text: 'Mejoras continuas con datos reales.' },
   ]
 
   const processSteps = [
-    '01. Discovery de negocio, objetivos y audiencia.',
-    '02. Arquitectura de contenido y wireframes de conversion.',
-    '03. UI de alto impacto + motion system.',
-    '04. Desarrollo React con performance y SEO tecnico.',
-    '05. Lanzamiento, metricas y mejoras continuas.',
-  ]
-
-  const testimonials = [
-    {
-      name: 'Sofia M. - Fundadora de Nox Wear',
-      quote: 'Con alpha subimos conversion en mobile y por fin la marca se siente premium.',
-    },
-    {
-      name: 'Daniel R. - Restaurante Brava',
-      quote: 'La web nueva nos trajo mas reservaciones directas y mejor imagen de marca.',
-    },
-    {
-      name: 'Paula G. - Ecom Beauty',
-      quote: 'Su proceso fue clarisimo. Diseñaron pensando en ventas, no solo en estetica.',
-    },
+    { step: '01', title: 'Discovery', text: 'Objetivos, público y ventaja competitiva.' },
+    { step: '02', title: 'Concepto', text: 'Dirección visual + arquitectura de conversión.' },
+    { step: '03', title: 'Build', text: 'Desarrollo, motion y performance técnico.' },
+    { step: '04', title: 'Escala', text: 'Medición, iteración y crecimiento continuo.' },
   ]
 
   return (
     <main className="page-wrap">
-      <section className="page-hero reveal hero-light home-hero-clean">
-        <p className="eyebrow">alpha web agency</p>
-        <h1>
-          <span className="headline-line-wrap"><span className="headline-line">Diseño elegante.</span></span>
-          <span className="headline-line-wrap"><span className="headline-line">Experiencia divertida.</span></span>
-          <span className="headline-line-wrap"><span className="headline-line">Resultados reales.</span></span>
-        </h1>
-        <p>Webs premium que convierten sin parecer una plantilla más.</p>
+      <section className="home-cinematic-hero reveal">
+        <img
+          src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=80"
+          alt="Equipo creativo trabajando en experiencias web"
+        />
+        <div className="home-cinematic-overlay" />
+        <div className="home-cinematic-content">
+          <p className="eyebrow">alpha web agency</p>
+          <h1>
+            <span className="headline-line-wrap"><span className="headline-line">Webs que se ven finas.</span></span>
+            <span className="headline-line-wrap"><span className="headline-line">Experiencias que atrapan.</span></span>
+          </h1>
+          <p>Lo esencial primero. Lo demás lo descubres al bajar.</p>
+        </div>
         <div className="hero-clean-actions">
           <a
             className="solid-btn cta-inline"
@@ -419,8 +409,22 @@ function HomePage() {
           >
             Hablar con alpha
           </a>
-          <span className="scroll-hint">Desliza para descubrir ↓</span>
+          <span className="scroll-hint">Baja para ver cómo trabajamos ↓</span>
         </div>
+      </section>
+
+      <section className="about-split reveal home-spacious">
+        <article className="about-image">
+          <img
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=80"
+            alt="Equipo alpha colaborando en estrategia y diseño"
+          />
+        </article>
+        <article className="about-copy">
+          <p className="eyebrow">quienes somos</p>
+          <h2>Somos alpha: estrategia, diseño y desarrollo en un solo equipo.</h2>
+          <p>Trabajamos con marcas que quieren verse mejor, comunicar más claro y convertir más.</p>
+        </article>
       </section>
 
       <section className="feature-grid reveal home-spacious">
@@ -431,36 +435,6 @@ function HomePage() {
             <p>{item.text}</p>
           </article>
         ))}
-      </section>
-
-      <section className="visual-band reveal home-spacious">
-        <article className="mini-chart">
-          <h3>Impacto Promedio</h3>
-          <div className="bars">
-            <div><span>Conversión</span><b style={{ width: '84%' }}>+84%</b></div>
-            <div><span>Leads</span><b style={{ width: '72%' }}>+72%</b></div>
-            <div><span>Retención</span><b style={{ width: '66%' }}>+66%</b></div>
-          </div>
-        </article>
-        <article className="donut-card">
-          <h3>Mix de Servicio</h3>
-          <div className="donut" aria-label="Grafica de servicio" />
-          <p>UX 40% · Dev 35% · CRO 25%</p>
-        </article>
-      </section>
-
-      <section className="process-section reveal home-spacious">
-        <div className="section-title-row">
-          <h2>Cómo funciona alpha</h2>
-          <p>Simple, ágil y enfocado en resultados.</p>
-        </div>
-        <div className="process-list">
-          {processSteps.map((step) => (
-            <article key={step} className="process-item">
-              <p>{step}</p>
-            </article>
-          ))}
-        </div>
       </section>
 
       <section className="stats-row reveal home-spacious">
@@ -478,16 +452,17 @@ function HomePage() {
         </article>
       </section>
 
-      <section className="testimonials reveal home-spacious">
+      <section className="process-section reveal home-spacious">
         <div className="section-title-row">
-          <h2>Lo que dicen nuestros clientes</h2>
-          <p>Resultados que se sienten en marca y en caja.</p>
+          <h2>Cómo funcionamos</h2>
+          <p>Sin vueltas: método claro y ejecución rápida.</p>
         </div>
-        <div className="testimonial-grid">
-          {testimonials.map((item) => (
-            <article key={item.name} className="testimonial-card">
-              <p>"{item.quote}"</p>
-              <span>{item.name}</span>
+        <div className="process-list">
+          {processSteps.map((step) => (
+            <article key={step.step} className="process-item">
+              <span>{step.step}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
             </article>
           ))}
         </div>
@@ -496,20 +471,20 @@ function HomePage() {
       <section className="faq-section reveal home-spacious">
         <div className="section-title-row">
           <h2>Preguntas frecuentes</h2>
-          <p>Rápido y directo.</p>
+          <p>Todo lo básico para arrancar.</p>
         </div>
         <div className="faq-grid">
           <article>
             <h3>Cuanto tarda un proyecto?</h3>
-            <p>Entre 3 y 8 semanas, segun alcance y contenido.</p>
+            <p>Entre 3 y 8 semanas, según alcance.</p>
           </article>
           <article>
             <h3>Solo hacen diseno o tambien desarrollo?</h3>
-            <p>Hacemos todo: estrategia, UX/UI, desarrollo, QA y mejoras post-lanzamiento.</p>
+            <p>Todo: estrategia, UX/UI, desarrollo y mejoras.</p>
           </article>
           <article>
             <h3>Pueden mejorar una web existente?</h3>
-            <p>Si. Auditamos tu web actual y rediseñamos solo lo que impacta resultados.</p>
+            <p>Sí. Auditamos y rediseñamos lo que más impacta.</p>
           </article>
         </div>
       </section>
