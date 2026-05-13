@@ -372,32 +372,58 @@ function AppLayout({ location }) {
 function HomePage() {
   const services = [
     {
-      icon: '01',
+      icon: '◉',
       title: 'Sitios corporativos',
       text: 'Creamos páginas web modernas para negocios que quieren verse profesionales.',
     },
     {
-      icon: '02',
+      icon: '△',
       title: 'Landing pages',
       text: 'Diseñamos sitios rápidos, claros y listos para vender con mensajes precisos.',
     },
     {
-      icon: '03',
+      icon: '▦',
       title: 'Tiendas y catálogos',
       text: 'Implementamos experiencias de compra ordenadas, confiables y fáciles de administrar.',
     },
     {
-      icon: '04',
+      icon: '↗',
       title: 'Rediseño UX/UI',
       text: 'Mejoramos estructuras existentes para aumentar claridad y confianza desde el primer vistazo.',
     },
   ]
 
-  const processSteps = [
-    { step: '01', title: 'Diagnóstico', text: 'Entendemos objetivos, público y tono de marca.' },
-    { step: '02', title: 'Diseño', text: 'Definimos estructura, estilo visual y jerarquía de contenido.' },
-    { step: '03', title: 'Desarrollo', text: 'Construimos una web estable, rápida y lista para operar.' },
-    { step: '04', title: 'Publicación', text: 'Ajustamos detalles finales y dejamos una base preparada para crecer.' },
+  const processTimeline = [
+    {
+      step: '01',
+      icon: '✉',
+      title: 'Contacto',
+      text: 'Recibimos tu idea y definimos objetivo principal del sitio.',
+    },
+    {
+      step: '02',
+      icon: '⌘',
+      title: 'Planeación',
+      text: 'Ordenamos estructura, alcance y prioridades del proyecto.',
+    },
+    {
+      step: '03',
+      icon: '◈',
+      title: 'Diseño',
+      text: 'Creamos una interfaz limpia, clara y enfocada en confianza.',
+    },
+    {
+      step: '04',
+      icon: '</>',
+      title: 'Desarrollo',
+      text: 'Construimos la web responsive con base técnica estable.',
+    },
+    {
+      step: '05',
+      icon: '✓',
+      title: 'Entrega',
+      text: 'Publicamos, validamos y dejamos el sitio listo para operar.',
+    },
   ]
 
   const trustPoints = [
@@ -431,6 +457,11 @@ function HomePage() {
         <div className="home-cinematic-overlay" />
         <div className="home-cinematic-content">
           <p className="eyebrow">ALPHA · agencia web</p>
+          <div className="hero-tags">
+            <span>Diseño UI/UX</span>
+            <span>Desarrollo Web</span>
+            <span>Responsive</span>
+          </div>
           <h1>
             <span className="headline-line-wrap"><span className="headline-line">Tu página debe generar</span></span>
             <span className="headline-line-wrap"><span className="headline-line">confianza desde el primer vistazo.</span></span>
@@ -446,7 +477,7 @@ function HomePage() {
           >
             Pedir cotización
           </a>
-          <span className="scroll-hint">Conoce nuestro proceso</span>
+          <span className="scroll-hint">Ver proceso visual ↓</span>
         </div>
       </section>
 
@@ -474,6 +505,7 @@ function HomePage() {
             <span className="symbol">{item.icon}</span>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
+            <span className="card-arrow">→</span>
           </article>
         ))}
       </section>
@@ -497,12 +529,18 @@ function HomePage() {
           <h2>Un flujo claro para diseñar, construir y lanzar sin fricción.</h2>
           <p>Tomamos decisiones con contexto y cuidamos cada entrega para que sea útil desde el primer día.</p>
         </div>
-        <div className="process-list">
-          {processSteps.map((step) => (
-            <article key={step.step} className="process-item">
-              <span>{step.step}</span>
-              <h3>{step.title}</h3>
-              <p>{step.text}</p>
+        <div className="timeline-wrap">
+          {processTimeline.map((step, index) => (
+            <article key={step.step} className="timeline-step">
+              <div className="timeline-pin">
+                <span className="timeline-number">{step.step}</span>
+                <span className="timeline-icon">{step.icon}</span>
+              </div>
+              <div className="timeline-copy">
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </div>
+              {index < processTimeline.length - 1 && <span className="timeline-connector" aria-hidden="true" />}
             </article>
           ))}
         </div>
@@ -577,6 +615,20 @@ function HomePage() {
         <p>Definimos alcance, tiempos y siguiente paso sin promesas exageradas ni métricas inventadas.</p>
         <a className="solid-btn cta-inline" href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20ALPHA,%20quiero%20cotizar%20mi%20pagina%20web`} target="_blank" rel="noreferrer">Pedir cotización</a>
       </section>
+
+      <footer className="site-footer reveal">
+        <div>
+          <strong>ALPHA</strong>
+          <p>Diseño y desarrollo web para negocios que quieren comunicar mejor y vender con claridad.</p>
+        </div>
+        <a
+          href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20ALPHA,%20quiero%20informacion%20sobre%20una%20pagina%20web`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Solicitar información
+        </a>
+      </footer>
     </main>
   )
 }

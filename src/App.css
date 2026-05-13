@@ -250,6 +250,22 @@ textarea {
   max-width: 830px;
 }
 
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+
+.hero-tags span {
+  font-size: 0.78rem;
+  color: #f3de9f;
+  border: 1px solid rgba(217, 178, 76, 0.45);
+  background: rgba(4, 13, 26, 0.5);
+  padding: 0.32rem 0.56rem;
+  border-radius: 999px;
+}
+
 .eyebrow {
   margin: 0;
   text-transform: uppercase;
@@ -418,6 +434,15 @@ textarea {
 
 .feature-card {
   padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(217, 178, 76, 0.44);
+  background: linear-gradient(160deg, rgba(20, 46, 78, 0.95), rgba(9, 26, 49, 0.95));
 }
 
 .feature-card .symbol {
@@ -430,6 +455,14 @@ textarea {
   color: var(--accent-strong);
   font-size: 0.78rem;
   font-weight: 800;
+}
+
+.card-arrow {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.7rem;
+  color: rgba(217, 178, 76, 0.7);
+  font-size: 1rem;
 }
 
 .feature-card h3,
@@ -467,10 +500,83 @@ textarea {
 .home-cta {
   margin-top: 1rem;
   padding: clamp(1rem, 3vw, 1.8rem);
+  position: relative;
 }
 
 .process-list {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.timeline-wrap {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.timeline-step {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: linear-gradient(155deg, rgba(17, 40, 70, 0.88), rgba(8, 23, 44, 0.9));
+  box-shadow: var(--shadow);
+  padding: 0.9rem;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.timeline-step:hover {
+  transform: translateY(-4px);
+  border-color: rgba(217, 178, 76, 0.45);
+}
+
+.timeline-pin {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.timeline-number {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: inline-grid;
+  place-items: center;
+  font-weight: 800;
+  color: #201b0d;
+  background: linear-gradient(135deg, #d2a945, #efd084);
+}
+
+.timeline-icon {
+  display: inline-grid;
+  place-items: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 0.4rem;
+  border-radius: 10px;
+  border: 1px solid rgba(217, 178, 76, 0.35);
+  color: #ecd18e;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.timeline-copy h3 {
+  margin: 0.8rem 0 0;
+  font-family: 'Manrope', sans-serif;
+}
+
+.timeline-copy p {
+  margin: 0.42rem 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.timeline-connector {
+  position: absolute;
+  right: -0.54rem;
+  top: 26px;
+  width: 0.7rem;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(217, 178, 76, 0.6), rgba(217, 178, 76, 0.1));
 }
 
 .process-item {
@@ -503,6 +609,12 @@ textarea {
   overflow: hidden;
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
+  transition: transform 0.24s ease, border-color 0.24s ease;
+}
+
+.showcase-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(217, 178, 76, 0.45);
 }
 
 .showcase-card img {
@@ -897,6 +1009,35 @@ textarea {
   color: var(--muted);
 }
 
+.site-footer {
+  margin-top: clamp(2rem, 7vw, 4rem);
+  border-top: 1px solid rgba(217, 178, 76, 0.32);
+  padding: 1.2rem 0 0.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.site-footer strong {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+}
+
+.site-footer p {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+.site-footer a {
+  border: 1px solid rgba(217, 178, 76, 0.38);
+  border-radius: 10px;
+  padding: 0.58rem 0.82rem;
+  color: #f0d99b;
+}
+
 @media (max-width: 1100px) {
   .showcase-grid,
   .catalog-grid,
@@ -909,7 +1050,8 @@ textarea {
   .about-split,
   .store-layout,
   .restaurant-grid,
-  .process-list {
+  .process-list,
+  .timeline-wrap {
     grid-template-columns: 1fr;
   }
 
@@ -949,9 +1091,19 @@ textarea {
   .stats-row,
   .quick-view-card,
   .process-list,
+  .timeline-wrap,
   .slot-grid,
-  .field-row {
+  .field-row,
+  .site-footer {
     grid-template-columns: 1fr;
+  }
+
+  .timeline-connector {
+    display: none;
+  }
+
+  .site-footer {
+    display: grid;
   }
 
   .quick-view-card img {
