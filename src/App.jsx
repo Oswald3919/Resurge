@@ -1,5 +1,5 @@
 ﻿import { useEffect, useRef, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './App.css'
@@ -8,84 +8,83 @@ gsap.registerPlugin(ScrollTrigger)
 
 const phoneNumber = '523340187767'
 
-const services = [
+const showcase = [
   {
-    title: 'Brand Sites',
-    detail: 'Webs de marca con narrativa visual y estructura enfocada en conversion.',
-    metric: 'Desde 3 semanas',
+    title: 'Ecommerce Fashion',
+    type: 'Tienda online',
+    image:
+      'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1400&q=80',
   },
   {
-    title: 'Landing Systems',
-    detail: 'Sistemas de landing pages para campanas, captacion y pruebas continuas.',
-    metric: 'CRO continuo',
+    title: 'Coffee Brand Site',
+    type: 'Marca + conversion',
+    image:
+      'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1400&q=80',
   },
   {
-    title: 'Motion Direction',
-    detail: 'Animacion con intencion: transiciones, scroll stories y microinteracciones.',
-    metric: 'GSAP + Framer',
+    title: 'Beauty Store UX',
+    type: 'Catalogo premium',
+    image:
+      'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1400&q=80',
+  },
+  {
+    title: 'Restaurant Booking',
+    type: 'Reservas y branding',
+    image:
+      'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1400&q=80',
   },
 ]
 
-const stats = [
-  { value: '+142%', label: 'conversion promedio' },
-  { value: '-38%', label: 'rebote en mobile' },
-  { value: '4.9/5', label: 'satisfaccion clientes' },
+const offerings = [
+  'Tiendas ecommerce que venden desde mobile',
+  'Landing pages para anuncios de alto ROAS',
+  'Webs corporativas premium con SEO tecnico',
+  'Motion systems con Framer Motion y GSAP',
 ]
 
 const navItems = [
-  { label: 'Servicios', href: '#services' },
-  { label: 'Resultados', href: '#results' },
-  { label: 'Contacto', href: '#contact' },
+  { label: 'Proyectos', href: '#proyectos' },
+  { label: 'Servicios', href: '#servicios' },
+  { label: 'Contacto', href: '#contacto' },
 ]
 
 function App() {
   const pageRef = useRef(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const whatsappLink = `https://wa.me/${phoneNumber}?text=Hola%20alpha,%20quiero%20una%20pagina%20top%20para%20mi%20negocio`
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.nav-shell', {
-        y: -35,
-        opacity: 0,
-        duration: 0.7,
-        ease: 'power3.out',
-      })
-
-      gsap.from('.title-reveal > span', {
+      gsap.from('.nav-shell', { y: -30, opacity: 0, duration: 0.7, ease: 'power3.out' })
+      gsap.from('.hero-headline .line', {
         yPercent: 110,
         opacity: 0,
+        stagger: 0.08,
         duration: 0.9,
         ease: 'power4.out',
-        stagger: 0.09,
       })
 
-      gsap.from('.hero-grid > *', {
-        opacity: 0,
-        y: 30,
-        duration: 0.9,
-        stagger: 0.12,
-        delay: 0.2,
-      })
-
-      gsap.utils.toArray('.reveal').forEach((el) => {
-        gsap.from(el, {
+      gsap.utils.toArray('.reveal').forEach((item) => {
+        gsap.from(item, {
           opacity: 0,
-          y: 46,
+          y: 40,
           duration: 0.8,
           ease: 'power3.out',
           scrollTrigger: {
-            trigger: el,
+            trigger: item,
             start: 'top 82%',
             toggleActions: 'play none none reverse',
           },
         })
       })
 
-      gsap.to('.noise-line', {
-        backgroundPositionX: '220px',
-        ease: 'none',
+      gsap.to('.hero-glow', {
+        x: 22,
+        y: 18,
+        yoyo: true,
         repeat: -1,
-        duration: 8,
+        duration: 4.5,
+        ease: 'sine.inOut',
       })
     }, pageRef)
 
@@ -99,25 +98,20 @@ function App() {
     }
   }, [menuOpen])
 
-  const whatsappLink = `https://wa.me/${phoneNumber}?text=Hola%20alpha,%20quiero%20una%20web%20de%20alto%20impacto`;
-
   return (
     <div className="site" ref={pageRef}>
       <header className="nav-shell">
         <a href="#top" className="wordmark">alpha</a>
-
         <nav className="main-nav">
           {navItems.map((item) => (
             <a key={item.href} href={item.href}>{item.label}</a>
           ))}
         </nav>
-
-        <a href={whatsappLink} className="nav-cta" target="_blank" rel="noreferrer">WhatsApp</a>
-
+        <a href={whatsappLink} target="_blank" rel="noreferrer" className="nav-cta">Empezar</a>
         <button
           type="button"
           className={`menu-btn ${menuOpen ? 'open' : ''}`}
-          onClick={() => setMenuOpen((prev) => !prev)}
+          onClick={() => setMenuOpen((p) => !p)}
           aria-label="Abrir menu"
           aria-expanded={menuOpen}
         >
@@ -129,84 +123,84 @@ function App() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div className="mobile-layer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <motion.div className="mobile-card" initial={{ y: 28, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 28, opacity: 0 }}>
+            <motion.div className="mobile-card" initial={{ y: 24, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 24, opacity: 0 }}>
               {navItems.map((item) => (
                 <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>
               ))}
-              <a href={whatsappLink} onClick={() => setMenuOpen(false)} target="_blank" rel="noreferrer">Contactar alpha</a>
+              <a href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>WhatsApp 3340187767</a>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
       <main id="top">
-        <section className="hero-frame">
-          <div className="noise-line" aria-hidden="true" />
-
-          <div className="hero-grid">
-            <div className="hero-left">
-              <p className="eyebrow">digital studio - web design & development</p>
-              <h1 className="title-reveal">
-                <span>alpha diseña</span>
-                <span>experiencias web</span>
-                <span>que se sienten caras.</span>
-              </h1>
-              <p className="lead">
-                Estrategia, estilo y tecnologia para negocios que quieren verse premium y vender mas en desktop y mobile.
-              </p>
-              <div className="hero-actions">
-                <motion.a whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }} href={whatsappLink} target="_blank" rel="noreferrer" className="btn solid">Iniciar por WhatsApp</motion.a>
-                <motion.a whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }} href="#services" className="btn outline">Explorar servicios</motion.a>
-              </div>
+        <section className="hero">
+          <div className="hero-text">
+            <p className="kicker">alpha - web agency de alto rendimiento</p>
+            <h1 className="hero-headline">
+              <span className="line-wrap"><span className="line">Construimos paginas</span></span>
+              <span className="line-wrap"><span className="line">que te atrapan</span></span>
+              <span className="line-wrap"><span className="line">y te hacen vender.</span></span>
+            </h1>
+            <p className="hero-sub">
+              Somos top creando sitios para tiendas, marcas, restaurantes, servicios y startups. Diseno, codigo y conversion en un solo equipo.
+            </p>
+            <div className="hero-actions">
+              <motion.a whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }} href={whatsappLink} target="_blank" rel="noreferrer" className="btn solid">Quiero mi web top</motion.a>
+              <motion.a whileHover={{ y: -3 }} whileTap={{ scale: 0.98 }} href="#proyectos" className="btn ghost">Ver ejemplos</motion.a>
             </div>
+          </div>
 
-            <div className="hero-right">
-              <div className="panel top">
-                <small>NOW BUILDING</small>
-                <strong>alpha.mx</strong>
-                <p>Interfaces sobrias, motion elegante y estructura pensada para conversion.</p>
-              </div>
-              <div className="panel bottom">
-                {stats.map((stat) => (
-                  <div key={stat.label}>
-                    <span>{stat.value}</span>
-                    <p>{stat.label}</p>
-                  </div>
-                ))}
-              </div>
+          <div className="hero-media">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80" alt="Dashboard y crecimiento digital" />
+            <div className="hero-glow" />
+            <div className="floating-card">
+              <strong>+220%</strong>
+              <span>crecimiento en ventas online</span>
             </div>
           </div>
         </section>
 
-        <section id="services" className="reveal section">
+        <section id="proyectos" className="section reveal">
           <div className="section-head">
-            <p className="eyebrow">servicios alpha</p>
-            <h2>Un enfoque visual totalmente distinto, sin plantillas genericas.</h2>
+            <p className="kicker">proyectos de muestra</p>
+            <h2>Ejemplos reales de lo que podemos construir para tu negocio.</h2>
           </div>
 
-          <div className="service-stack">
-            {services.map((service, index) => (
-              <motion.article key={service.title} className="service-item" whileHover={{ x: 6 }} transition={{ type: 'spring', stiffness: 260, damping: 22 }}>
-                <span>0{index + 1}</span>
-                <h3>{service.title}</h3>
-                <p>{service.detail}</p>
-                <small>{service.metric}</small>
+          <div className="showcase-grid">
+            {showcase.map((item) => (
+              <motion.article key={item.title} className="showcase-card" whileHover={{ y: -8 }} transition={{ type: 'spring', stiffness: 260, damping: 22 }}>
+                <img src={item.image} alt={item.title} loading="lazy" />
+                <div className="showcase-overlay">
+                  <p>{item.type}</p>
+                  <h3>{item.title}</h3>
+                </div>
               </motion.article>
             ))}
           </div>
         </section>
 
-        <section id="results" className="reveal section result-band">
-          <h2>Tu marca no necesita otra web bonita. Necesita una web que produzca.</h2>
-          <a href={whatsappLink} target="_blank" rel="noreferrer" className="btn solid">Hablar con alpha - 3340187767</a>
+        <section id="servicios" className="section reveal services-band">
+          <div className="section-head">
+            <p className="kicker">lo que hacemos</p>
+            <h2>De todo lo necesario para dominar digitalmente.</h2>
+          </div>
+          <div className="offer-list">
+            {offerings.map((item) => (
+              <div key={item} className="offer-item">
+                <span>+</span>
+                <p>{item}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
-        <section id="contact" className="reveal section contact-block">
-          <p className="eyebrow">contacto directo</p>
-          <h2>Escribenos y te enviamos propuesta inicial en menos de 24 horas.</h2>
-          <div className="contact-links">
-            <a href={whatsappLink} target="_blank" rel="noreferrer">WhatsApp: 3340187767</a>
-            <span>Marca: alpha</span>
+        <section id="contacto" className="section reveal cta">
+          <h2>Si quieres una web que impresione y convierta, hablemos hoy.</h2>
+          <p>Escribenos directo y te proponemos una idea inicial para tu negocio.</p>
+          <div className="cta-actions">
+            <a href={whatsappLink} target="_blank" rel="noreferrer" className="btn solid">WhatsApp 3340187767</a>
+            <span>alpha</span>
           </div>
         </section>
       </main>
