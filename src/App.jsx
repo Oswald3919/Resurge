@@ -370,43 +370,176 @@ function AppLayout({ location }) {
 }
 
 function HomePage() {
+  const pillars = [
+    {
+      title: 'Quienes Somos',
+      text: 'alpha es una agencia de diseno y desarrollo web enfocada en crecimiento. No hacemos paginas bonitas sin estrategia: construimos activos digitales que venden.',
+    },
+    {
+      title: 'Como Funcionamos',
+      text: 'Trabajamos por sprints: descubrimiento, propuesta visual, desarrollo, QA y optimizacion post-lanzamiento. Cada etapa tiene entregables claros.',
+    },
+    {
+      title: 'En Que Somos Top',
+      text: 'Conversion, velocidad, experiencia mobile y narrativa visual. Unimos branding + performance para que tu web tenga impacto real.',
+    },
+  ]
+
+  const processSteps = [
+    '01. Discovery de negocio, objetivos y audiencia.',
+    '02. Arquitectura de contenido y wireframes de conversion.',
+    '03. UI de alto impacto + motion system.',
+    '04. Desarrollo React con performance y SEO tecnico.',
+    '05. Lanzamiento, metricas y mejoras continuas.',
+  ]
+
+  const testimonials = [
+    {
+      name: 'Sofia M. - Fundadora de Nox Wear',
+      quote: 'Con alpha subimos conversion en mobile y por fin la marca se siente premium.',
+    },
+    {
+      name: 'Daniel R. - Restaurante Brava',
+      quote: 'La web nueva nos trajo mas reservaciones directas y mejor imagen de marca.',
+    },
+    {
+      name: 'Paula G. - Ecom Beauty',
+      quote: 'Su proceso fue clarisimo. Diseñaron pensando en ventas, no solo en estetica.',
+    },
+  ]
+
   return (
     <main className="page-wrap">
       <section className="page-hero reveal">
-        <p className="eyebrow">alpha demos</p>
+        <p className="eyebrow">alpha web agency</p>
         <h1>
-          <span className="headline-line-wrap"><span className="headline-line">Experiencias web que</span></span>
-          <span className="headline-line-wrap"><span className="headline-line">atrapan y convierten.</span></span>
+          <span className="headline-line-wrap"><span className="headline-line">Somos alpha.</span></span>
+          <span className="headline-line-wrap"><span className="headline-line">Creamos webs top</span></span>
+          <span className="headline-line-wrap"><span className="headline-line">que hacen crecer marcas.</span></span>
         </h1>
         <p>
-          Navega entre demos reales: tienda ecommerce con descuentos, reservacion para restaurante y
-          catalogo avanzado con busqueda y filtros.
+          Ayudamos a negocios ambiciosos a verse premium, convertir mejor y escalar digitalmente con
+          estrategia, diseno, desarrollo y optimizacion continua.
         </p>
       </section>
 
-      <section className="showcase-grid reveal">
-        {showcasePages.map((page) => (
-          <motion.article
-            key={page.title}
-            className={`showcase-card tone-${page.tone}`}
-            whileHover={{ y: -8 }}
-            transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-          >
-            <img src={page.image} alt={page.title} loading="lazy" />
-            <div className="showcase-content">
-              <small>{page.subtitle}</small>
-              <h3>{page.title}</h3>
-              <Link to={page.to}>Ver ejemplo</Link>
-            </div>
-          </motion.article>
+      <section className="pillar-grid reveal">
+        {pillars.map((item) => (
+          <article key={item.title} className="pillar-card">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
         ))}
       </section>
 
       <section className="value-band reveal">
-        <h2>alpha entrega diseño, codigo y conversion en una sola capa.</h2>
+        <h2>alpha entrega estrategia, diseno y codigo en una sola capa.</h2>
         <p>
-          Lo que ves aqui son ejemplos interactivos listos para vender: features reales, no solo mockups.
+          Nuestro enfoque no es hacer una web y ya. Buscamos resultados: mas leads, mas ventas, mejor
+          experiencia y una marca que se vea mas fuerte que su competencia.
         </p>
+      </section>
+
+      <section className="process-section reveal">
+        <div className="section-title-row">
+          <h2>Como trabajamos contigo</h2>
+          <p>Proceso simple, transparente y orientado a negocio.</p>
+        </div>
+        <div className="process-list">
+          {processSteps.map((step) => (
+            <article key={step} className="process-item">
+              <p>{step}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="stats-row reveal">
+        <article>
+          <strong>+220%</strong>
+          <p>Crecimiento en ventas online en proyectos de ecommerce.</p>
+        </article>
+        <article>
+          <strong>-42%</strong>
+          <p>Reduccion de rebote mobile con rediseño UX/UI.</p>
+        </article>
+        <article>
+          <strong>4.9/5</strong>
+          <p>Satisfaccion promedio de clientes alpha.</p>
+        </article>
+      </section>
+
+      <section className="testimonials reveal">
+        <div className="section-title-row">
+          <h2>Lo que dicen nuestros clientes</h2>
+          <p>Resultados que se sienten en marca y en caja.</p>
+        </div>
+        <div className="testimonial-grid">
+          {testimonials.map((item) => (
+            <article key={item.name} className="testimonial-card">
+              <p>"{item.quote}"</p>
+              <span>{item.name}</span>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="faq-section reveal">
+        <div className="section-title-row">
+          <h2>Preguntas frecuentes</h2>
+          <p>Lo esencial para empezar con confianza.</p>
+        </div>
+        <div className="faq-grid">
+          <article>
+            <h3>Cuanto tarda un proyecto?</h3>
+            <p>Entre 3 y 8 semanas, segun alcance y contenido.</p>
+          </article>
+          <article>
+            <h3>Solo hacen diseno o tambien desarrollo?</h3>
+            <p>Hacemos todo: estrategia, UX/UI, desarrollo, QA y mejoras post-lanzamiento.</p>
+          </article>
+          <article>
+            <h3>Pueden mejorar una web existente?</h3>
+            <p>Si. Auditamos tu web actual y rediseñamos solo lo que impacta resultados.</p>
+          </article>
+        </div>
+      </section>
+
+      <section className="secondary-demo-section reveal">
+        <div className="section-title-row">
+          <h2>Demos de funcionalidades (secundario)</h2>
+          <p>Ejemplos tecnicos para que veas la calidad de ejecucion.</p>
+        </div>
+        <div className="showcase-grid">
+          {showcasePages.map((page) => (
+            <motion.article
+              key={page.title}
+              className={`showcase-card tone-${page.tone}`}
+              whileHover={{ y: -8 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+            >
+              <img src={page.image} alt={page.title} loading="lazy" />
+              <div className="showcase-content">
+                <small>{page.subtitle}</small>
+                <h3>{page.title}</h3>
+                <Link to={page.to}>Ver ejemplo</Link>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </section>
+
+      <section className="home-cta reveal">
+        <h2>Listo para que tu marca se vea top y venda mejor?</h2>
+        <p>Escribenos y te enviamos propuesta inicial orientada a resultados.</p>
+        <a
+          className="solid-btn cta-inline"
+          href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20alpha,%20quiero%20una%20propuesta%20para%20mi%20marca`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Hablar con alpha
+        </a>
       </section>
     </main>
   )
