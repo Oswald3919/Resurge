@@ -370,19 +370,11 @@ function AppLayout({ location }) {
 }
 
 function HomePage() {
-  const pillars = [
-    {
-      title: 'Quienes Somos',
-      text: 'alpha es una agencia de diseno y desarrollo web enfocada en crecimiento. No hacemos paginas bonitas sin estrategia: construimos activos digitales que venden.',
-    },
-    {
-      title: 'Como Funcionamos',
-      text: 'Trabajamos por sprints: descubrimiento, propuesta visual, desarrollo, QA y optimizacion post-lanzamiento. Cada etapa tiene entregables claros.',
-    },
-    {
-      title: 'En Que Somos Top',
-      text: 'Conversion, velocidad, experiencia mobile y narrativa visual. Unimos branding + performance para que tu web tenga impacto real.',
-    },
+  const features = [
+    { icon: '◉', title: 'Estrategia', text: 'Negocio primero, diseño después.' },
+    { icon: '△', title: 'UX + Motion', text: 'Interfaces claras y memorables.' },
+    { icon: '▦', title: 'Desarrollo', text: 'React rápido, escalable y SEO.' },
+    { icon: '↗', title: 'Crecimiento', text: 'Optimización continua de conversión.' },
   ]
 
   const processSteps = [
@@ -410,40 +402,48 @@ function HomePage() {
 
   return (
     <main className="page-wrap">
-      <section className="page-hero reveal">
+      <section className="page-hero reveal hero-light">
         <p className="eyebrow">alpha web agency</p>
         <h1>
-          <span className="headline-line-wrap"><span className="headline-line">Somos alpha.</span></span>
-          <span className="headline-line-wrap"><span className="headline-line">Creamos webs top</span></span>
-          <span className="headline-line-wrap"><span className="headline-line">que hacen crecer marcas.</span></span>
+          <span className="headline-line-wrap"><span className="headline-line">Diseño elegante.</span></span>
+          <span className="headline-line-wrap"><span className="headline-line">Experiencia divertida.</span></span>
+          <span className="headline-line-wrap"><span className="headline-line">Resultados reales.</span></span>
         </h1>
         <p>
-          Ayudamos a negocios ambiciosos a verse premium, convertir mejor y escalar digitalmente con
-          estrategia, diseno, desarrollo y optimizacion continua.
+          alpha crea páginas que se ven premium y convierten, sin verse rígidas ni aburridas.
         </p>
       </section>
 
-      <section className="pillar-grid reveal">
-        {pillars.map((item) => (
-          <article key={item.title} className="pillar-card">
+      <section className="feature-grid reveal">
+        {features.map((item) => (
+          <article key={item.title} className="feature-card">
+            <span className="symbol">{item.icon}</span>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
           </article>
         ))}
       </section>
 
-      <section className="value-band reveal">
-        <h2>alpha entrega estrategia, diseno y codigo en una sola capa.</h2>
-        <p>
-          Nuestro enfoque no es hacer una web y ya. Buscamos resultados: mas leads, mas ventas, mejor
-          experiencia y una marca que se vea mas fuerte que su competencia.
-        </p>
+      <section className="visual-band reveal">
+        <article className="mini-chart">
+          <h3>Impacto Promedio</h3>
+          <div className="bars">
+            <div><span>Conversión</span><b style={{ width: '84%' }}>+84%</b></div>
+            <div><span>Leads</span><b style={{ width: '72%' }}>+72%</b></div>
+            <div><span>Retención</span><b style={{ width: '66%' }}>+66%</b></div>
+          </div>
+        </article>
+        <article className="donut-card">
+          <h3>Mix de Servicio</h3>
+          <div className="donut" aria-label="Grafica de servicio" />
+          <p>UX 40% · Dev 35% · CRO 25%</p>
+        </article>
       </section>
 
       <section className="process-section reveal">
         <div className="section-title-row">
-          <h2>Como trabajamos contigo</h2>
-          <p>Proceso simple, transparente y orientado a negocio.</p>
+          <h2>Cómo funciona alpha</h2>
+          <p>Simple, ágil y enfocado en resultados.</p>
         </div>
         <div className="process-list">
           {processSteps.map((step) => (
@@ -457,15 +457,15 @@ function HomePage() {
       <section className="stats-row reveal">
         <article>
           <strong>+220%</strong>
-          <p>Crecimiento en ventas online en proyectos de ecommerce.</p>
+          <p>ventas online</p>
         </article>
         <article>
           <strong>-42%</strong>
-          <p>Reduccion de rebote mobile con rediseño UX/UI.</p>
+          <p>rebote mobile</p>
         </article>
         <article>
           <strong>4.9/5</strong>
-          <p>Satisfaccion promedio de clientes alpha.</p>
+          <p>satisfacción cliente</p>
         </article>
       </section>
 
@@ -487,7 +487,7 @@ function HomePage() {
       <section className="faq-section reveal">
         <div className="section-title-row">
           <h2>Preguntas frecuentes</h2>
-          <p>Lo esencial para empezar con confianza.</p>
+          <p>Rápido y directo.</p>
         </div>
         <div className="faq-grid">
           <article>
@@ -508,7 +508,7 @@ function HomePage() {
       <section className="secondary-demo-section reveal">
         <div className="section-title-row">
           <h2>Demos de funcionalidades (secundario)</h2>
-          <p>Ejemplos tecnicos para que veas la calidad de ejecucion.</p>
+          <p>Ejemplos interactivos de lo que podemos construir.</p>
         </div>
         <div className="showcase-grid">
           {showcasePages.map((page) => (
