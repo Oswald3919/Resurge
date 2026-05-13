@@ -300,7 +300,7 @@ function AppLayout({ location }) {
   return (
     <div className="app-shell" ref={rootRef}>
       <header className="top-nav">
-        <Link className="brand" to="/">alpha</Link>
+        <Link className="brand" to="/">ALPHA</Link>
 
         <nav className="desktop-nav">
           {pageLinks.map((link) => (
@@ -316,7 +316,7 @@ function AppLayout({ location }) {
 
         <a
           className="main-cta"
-          href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20alpha,%20quiero%20una%20demo%20como%20esta`}
+          href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20ALPHA,%20quiero%20una%20demo%20como%20esta`}
           target="_blank"
           rel="noreferrer"
         >
@@ -396,31 +396,36 @@ function HomePage() {
   const processTimeline = [
     {
       step: '01',
-      icon: '✉',
+      icon: 'mark_email_unread',
+      accent: 'aqua',
       title: 'Contacto',
       text: 'Recibimos tu idea y definimos objetivo principal del sitio.',
     },
     {
       step: '02',
-      icon: '⌘',
+      icon: 'hub',
+      accent: 'gold',
       title: 'Planeación',
       text: 'Ordenamos estructura, alcance y prioridades del proyecto.',
     },
     {
       step: '03',
-      icon: '◈',
+      icon: 'design_services',
+      accent: 'violet',
       title: 'Diseño',
       text: 'Creamos una interfaz limpia, clara y enfocada en confianza.',
     },
     {
       step: '04',
-      icon: '</>',
+      icon: 'code_blocks',
+      accent: 'cyan',
       title: 'Desarrollo',
       text: 'Construimos la web responsive con base técnica estable.',
     },
     {
       step: '05',
-      icon: '✓',
+      icon: 'rocket_launch',
+      accent: 'lime',
       title: 'Entrega',
       text: 'Publicamos, validamos y dejamos el sitio listo para operar.',
     },
@@ -471,7 +476,7 @@ function HomePage() {
         <div className="hero-clean-actions">
           <a
             className="solid-btn cta-inline"
-            href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20alpha,%20quiero%20una%20propuesta%20para%20mi%20marca`}
+            href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20ALPHA,%20quiero%20una%20propuesta%20para%20mi%20marca`}
             target="_blank"
             rel="noreferrer"
           >
@@ -485,7 +490,7 @@ function HomePage() {
         <article className="about-image">
           <img
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=80"
-            alt="Equipo alpha colaborando en estrategia y diseño"
+            alt="Equipo ALPHA colaborando en estrategia y diseño"
           />
         </article>
         <article className="about-copy">
@@ -531,10 +536,15 @@ function HomePage() {
         </div>
         <div className="timeline-wrap">
           {processTimeline.map((step, index) => (
-            <article key={step.step} className="timeline-step">
+            <article
+              key={step.step}
+              className={`timeline-step tone-${step.accent}`}
+              style={{ '--step-index': index }}
+            >
+              <span className="timeline-glow" aria-hidden="true" />
               <div className="timeline-pin">
                 <span className="timeline-number">{step.step}</span>
-                <span className="timeline-icon">{step.icon}</span>
+                <span className="timeline-icon material-symbols-rounded" aria-hidden="true">{step.icon}</span>
               </div>
               <div className="timeline-copy">
                 <h3>{step.title}</h3>
@@ -743,7 +753,7 @@ function StoreDemoPage() {
 
   const checkoutMessage = encodeURIComponent(
     [
-      'Hola alpha, quiero comprar:',
+      'Hola ALPHA, quiero comprar:',
       ...cart.map((item) => `- ${item.name} x${item.qty}`),
       `Subtotal: ${formatCurrency(subtotal)}`,
       activePromo ? `Cupon ${activePromo}: -${formatCurrency(promoAmount)}` : 'Sin cupon',
@@ -1253,7 +1263,7 @@ function CatalogDemoPage() {
                 <strong>{formatCurrency(selected.price)}</strong>
                 <a
                   className="solid-btn"
-                  href={`https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(`Hola alpha, me interesa ${selected.title}`)}`}
+                  href={`https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(`Hola ALPHA, me interesa ${selected.title}`)}`}
                   target="_blank"
                   rel="noreferrer"
                 >
