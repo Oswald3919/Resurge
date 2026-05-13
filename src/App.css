@@ -4,7 +4,6 @@
   --bg-primary: #050b1a;
   --bg-secondary: #0b1630;
   --surface: rgba(255, 255, 255, 0.06);
-  --surface-strong: rgba(255, 255, 255, 0.11);
   --text: #f6f8ff;
   --text-soft: #b7c1d6;
   --line: rgba(255, 255, 255, 0.15);
@@ -66,19 +65,83 @@ a {
   letter-spacing: 0.04em;
 }
 
-.nav nav {
+.desktop-nav {
   display: flex;
   gap: 1.1rem;
 }
 
-.nav a {
+.desktop-nav a {
   color: var(--text-soft);
   font-weight: 500;
   transition: color 0.25s ease;
 }
 
-.nav a:hover {
+.desktop-nav a:hover {
   color: var(--text);
+}
+
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.04);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.menu-toggle.open span:first-child {
+  transform: translateY(3.5px) rotate(45deg);
+}
+
+.menu-toggle.open span:last-child {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 18;
+  background: rgba(4, 10, 24, 0.78);
+  backdrop-filter: blur(9px);
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 5.8rem 1rem 1rem;
+}
+
+.mobile-menu-panel {
+  width: min(560px, 100%);
+  background: rgba(7, 14, 31, 0.96);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.mobile-menu-panel a {
+  color: var(--text);
+  font-size: 1.08rem;
+  padding: 0.75rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.mobile-menu-panel a:active {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--line);
 }
 
 .hero {
@@ -159,7 +222,7 @@ a {
 
 .hero-visual {
   position: relative;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1 / 1;
   max-width: 500px;
   width: 100%;
   justify-self: end;
@@ -321,6 +384,8 @@ a {
   .hero-visual {
     justify-self: stretch;
     max-width: none;
+    order: -1;
+    border-radius: 22px;
   }
 
   .cards {
@@ -333,32 +398,138 @@ a {
   }
 }
 
-@media (max-width: 640px) {
-  .nav {
-    border-radius: 12px;
-    padding: 0.75rem 0.8rem;
+@media (max-width: 760px) {
+  .page {
+    width: min(var(--max-width), 94vw);
   }
 
-  .nav nav {
-    gap: 0.65rem;
-    font-size: 0.92rem;
+  .desktop-nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .mobile-menu {
+    display: flex;
+  }
+
+  .hero {
+    padding-top: 1.45rem;
+    gap: 1.1rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 10.2vw, 2.85rem);
+    line-height: 0.95;
+  }
+
+  .hero-subtitle {
+    margin-top: 1rem;
+    font-size: 0.98rem;
+    line-height: 1.6;
   }
 
   .hero-actions {
     flex-direction: column;
+    margin-top: 1.2rem;
   }
 
   .btn {
     width: 100%;
+    min-height: 48px;
+  }
+
+  .hero-card {
+    right: 0.75rem;
+    bottom: 0.75rem;
+    width: min(245px, 84%);
+    padding: 0.82rem;
+  }
+
+  .hero-card p {
+    font-size: 1.55rem;
+  }
+
+  .section {
+    padding: 3.4rem 0;
+  }
+
+  .section-heading {
+    margin-bottom: 1.2rem;
+  }
+
+  .section-heading h2,
+  .cta h2 {
+    font-size: clamp(1.55rem, 7vw, 2rem);
+    line-height: 1.16;
+  }
+
+  .card {
+    border-radius: 14px;
+    padding: 1.05rem;
+  }
+
+  .timeline {
+    padding-left: 0.7rem;
   }
 
   .timeline-item {
-    grid-template-columns: 42px 1fr;
-    gap: 0.65rem;
+    grid-template-columns: 38px 1fr;
+    gap: 0.62rem;
   }
 
   .step {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    font-size: 0.72rem;
+  }
+
+  .cta {
+    border-radius: 18px;
+    padding: 1.2rem;
+  }
+
+  .cta .btn {
+    margin-top: 0.2rem;
+  }
+
+  .footer {
+    margin-top: 2rem;
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav {
+    top: 0.6rem;
+    margin-top: 0.6rem;
+    padding: 0.7rem 0.75rem;
+    border-radius: 12px;
+  }
+
+  .brand {
+    font-size: 1.18rem;
+  }
+
+  .menu-toggle {
+    width: 38px;
+    height: 38px;
+  }
+
+  .kicker {
+    margin-bottom: 0.7rem;
+    font-size: 0.7rem;
+  }
+
+  .hero-orb {
+    width: 120px;
+    height: 120px;
+  }
+
+  .parallax-grid {
+    background-size: 24px 24px;
   }
 }

@@ -1,5 +1,5 @@
-﻿import { useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
+﻿import { useEffect, useRef, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './App.css'
@@ -31,8 +31,15 @@ const process = [
   'Lanzamos, medimos y optimizamos para escalar resultados.',
 ]
 
+const navItems = [
+  { label: 'Servicios', href: '#services' },
+  { label: 'Proceso', href: '#process' },
+  { label: 'Contacto', href: '#contact' },
+]
+
 function App() {
   const pageRef = useRef(null)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -89,28 +96,80 @@ function App() {
     return () => ctx.revert()
   }, [])
 
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [mobileMenuOpen])
+
+  const closeMenu = () => setMobileMenuOpen(false)
+
   return (
     <div className="page" ref={pageRef}>
       <header className="nav">
         <span className="brand">alpha</span>
-        <nav>
-          <a href="#services">Servicios</a>
-          <a href="#process">Proceso</a>
-          <a href="#contact">Contacto</a>
+
+        <nav className="desktop-nav">
+          {navItems.map((item) => (
+            <a key={item.href} href={item.href}>{item.label}</a>
+          ))}
         </nav>
+
+        <button
+          type="button"
+          className={`menu-toggle ${mobileMenuOpen ? 'open' : ''}`}
+          onClick={() => setMobileMenuOpen((prev) => !prev)}
+          aria-label="Abrir menu"
+          aria-expanded={mobileMenuOpen}
+        >
+          <span />
+          <span />
+        </button>
       </header>
+
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            className="mobile-menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="mobile-menu-panel"
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 30, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              {navItems.map((item) => (
+                <a key={item.href} href={item.href} onClick={closeMenu}>{item.label}</a>
+              ))}
+              <motion.button
+                whileTap={{ scale: 0.98 }}
+                className="btn btn-primary"
+                type="button"
+                onClick={closeMenu}
+              >
+                Empezar proyecto
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <main>
         <section className="hero">
           <div className="hero-copy">
-            <p className="kicker">Agencia web de nueva generación</p>
+            <p className="kicker">Agencia web de nueva generacion</p>
             <h1 className="hero-title">
               <span className="line-wrap"><span className="line">Creamos webs</span></span>
               <span className="line-wrap"><span className="line">que venden,</span></span>
               <span className="line-wrap"><span className="line">enamoran y escalan.</span></span>
             </h1>
             <p className="hero-subtitle">
-              En alpha mezclamos estrategia, diseño y desarrollo para lanzar experiencias web que se sienten premium y convierten mejor.
+              En alpha mezclamos estrategia, diseno y desarrollo para lanzar experiencias web que se sienten premium y convierten mejor.
             </p>
             <div className="hero-actions">
               <motion.button
@@ -171,7 +230,7 @@ function App() {
         <section id="process" className="section reveal">
           <div className="section-heading">
             <p className="kicker">Proceso</p>
-            <h2>Metodología clara, ejecución impecable</h2>
+            <h2>Metodologia clara, ejecucion impecable</h2>
           </div>
           <div className="timeline">
             {process.map((item, index) => (
@@ -192,7 +251,7 @@ function App() {
 
         <section id="contact" className="section cta reveal">
           <h2>Tu siguiente web puede ser brutal</h2>
-          <p>Si quieres una presencia digital que se vea premium y además rinda, armemos algo grande juntos.</p>
+          <p>Si quieres una presencia digital que se vea premium y ademas rinda, armemos algo grande juntos.</p>
           <motion.button
             whileHover={{ scale: 1.03, boxShadow: '0 0 0 8px rgba(255,255,255,0.1)' }}
             whileTap={{ scale: 0.98 }}
