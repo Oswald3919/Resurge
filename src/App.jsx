@@ -241,6 +241,40 @@ function todayISO() {
   return `${now.getFullYear()}-${month}-${day}`
 }
 
+function SocialIcon({ name }) {
+  const commonProps = {
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    xmlns: 'http://www.w3.org/2000/svg',
+    focusable: 'false',
+    'aria-hidden': 'true',
+    stroke: 'currentColor',
+    strokeWidth: 2,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+  }
+
+  switch (name) {
+    case 'instagram':
+      return (
+        <svg {...commonProps}>
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+        </svg>
+      )
+    case 'whatsapp':
+      return (
+        <svg {...commonProps}>
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.7c.9 0 1.8.1 2.6.3a8.74 8.74 0 0 1 5.9 7.6Z" />
+          <path d="M17 10c-.3-.3-.8-.3-1.1 0l-1.2 1.2c-.1.1-.3.1-.4 0-.4-.4-.9-.9-1.3-1.3-.1-.1-.1-.3 0-.4l1.2-1.2c.3-.3.3-.8 0-1.1L12.9 5c-.3-.3-.8-.3-1.1 0l-1.2 1.2c-.5.5-.6 1.2-.3 1.8.4.8 1.1 1.7 2.1 2.7 1 1 1.9 1.7 2.7 2.1.6.3 1.3.2 1.8-.3l1.2-1.2c.3-.3.3-.8 0-1.1L17 10Z" />
+        </svg>
+      )
+    default:
+      return null
+  }
+}
+
 function TimelineIcon({ name }) {
   const commonProps = {
     viewBox: '0 0 48 48',
@@ -519,15 +553,27 @@ function AppLayout({ location }) {
           ))}
         </nav>
 
-        <a
-          className="main-cta"
-          href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20ALPHA,%20quiero%20una%20demo%20como%20esta`}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={`Contactar a ALPHA por WhatsApp al ${DISPLAY_PHONE}`}
-        >
-          WhatsApp
-        </a>
+        <div className="nav-actions">
+          <a
+            className="social-nav-link"
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Seguir a ALPHA en Instagram ${INSTAGRAM_HANDLE}`}
+          >
+            <SocialIcon name="instagram" />
+          </a>
+          <a
+            className="main-cta"
+            href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20ALPHA,%20quiero%20una%20demo%20como%20esta`}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Contactar a ALPHA por WhatsApp al ${DISPLAY_PHONE}`}
+          >
+            <SocialIcon name="whatsapp" />
+            <span>WhatsApp</span>
+          </a>
+        </div>
 
         <button
           type="button"
@@ -558,7 +604,7 @@ function AppLayout({ location }) {
         rel="noreferrer"
         aria-label={`Contactar a ALPHA por WhatsApp al ${DISPLAY_PHONE}`}
       >
-        <span>WA</span>
+        <SocialIcon name="whatsapp" />
       </a>
 
       <AnimatePresence>
@@ -575,11 +621,24 @@ function AppLayout({ location }) {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 26, opacity: 0 }}
             >
-              {pageLinks.map((link) => (
-                <NavLink key={link.to} to={link.to} onClick={() => setMenuOpen(false)}>
-                  {link.label}
-                </NavLink>
-              ))}
+              <div className="mobile-links">
+                {pageLinks.map((link) => (
+                  <NavLink key={link.to} to={link.to} onClick={() => setMenuOpen(false)}>
+                    {link.label}
+                  </NavLink>
+                ))}
+              </div>
+
+              <div className="mobile-socials">
+                <a href={`https://wa.me/${PHONE_NUMBER}`} target="_blank" rel="noreferrer">
+                  <SocialIcon name="whatsapp" />
+                  <span>WhatsApp</span>
+                </a>
+                <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
+                  <SocialIcon name="instagram" />
+                  <span>Instagram</span>
+                </a>
+              </div>
             </motion.div>
           </motion.div>
         )}
@@ -754,6 +813,17 @@ function HomePage() {
             <span className="headline-line-wrap"><span className="headline-line">confianza desde el primer vistazo.</span></span>
           </h1>
           <p>Convertimos ideas en experiencias web limpias, funcionales y atractivas para marcas que quieren crecer con orden.</p>
+          
+          <div className="hero-social-links">
+            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram">
+              <SocialIcon name="instagram" />
+              <span>{INSTAGRAM_HANDLE}</span>
+            </a>
+            <a href={`https://wa.me/${PHONE_NUMBER}`} target="_blank" rel="noreferrer" aria-label="WhatsApp">
+              <SocialIcon name="whatsapp" />
+              <span>{DISPLAY_PHONE}</span>
+            </a>
+          </div>
         </div>
         <div className="hero-clean-actions">
           <a
@@ -762,6 +832,7 @@ function HomePage() {
             target="_blank"
             rel="noreferrer"
           >
+            <SocialIcon name="whatsapp" />
             Pedir cotización
           </a>
           <span className="scroll-hint">Ver proceso visual ↓</span>
@@ -972,8 +1043,14 @@ function HomePage() {
         <h2>Cuéntanos qué necesitas y te enviamos una propuesta clara para tu sitio web.</h2>
         <p>Definimos alcance, tiempos y siguiente paso sin promesas exageradas ni métricas inventadas.</p>
         <div className="contact-actions">
-          <a className="solid-btn cta-inline" href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20ALPHA,%20quiero%20cotizar%20mi%20pagina%20web`} target="_blank" rel="noreferrer">WhatsApp {DISPLAY_PHONE}</a>
-          <a className="ghost-btn cta-inline" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Instagram {INSTAGRAM_HANDLE}</a>
+          <a className="solid-btn cta-inline" href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20ALPHA,%20quiero%20cotizar%20mi%20pagina%20web`} target="_blank" rel="noreferrer">
+            <SocialIcon name="whatsapp" />
+            WhatsApp {DISPLAY_PHONE}
+          </a>
+          <a className="ghost-btn cta-inline" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
+            <SocialIcon name="instagram" />
+            Instagram {INSTAGRAM_HANDLE}
+          </a>
         </div>
       </section>
 
@@ -982,15 +1059,23 @@ function HomePage() {
           <strong>ALPHA</strong>
           <p>Diseño y desarrollo web para negocios que quieren comunicar mejor y vender con claridad.</p>
           <div className="footer-contact">
-            <a href={`tel:+${PHONE_NUMBER}`}>{DISPLAY_PHONE}</a>
-            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">{INSTAGRAM_HANDLE}</a>
+            <a href={`tel:+${PHONE_NUMBER}`}>
+              <SocialIcon name="whatsapp" />
+              {DISPLAY_PHONE}
+            </a>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
+              <SocialIcon name="instagram" />
+              {INSTAGRAM_HANDLE}
+            </a>
           </div>
         </div>
         <a
           href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20ALPHA,%20quiero%20informacion%20sobre%20una%20pagina%20web`}
           target="_blank"
           rel="noreferrer"
+          className="footer-cta"
         >
+          <SocialIcon name="whatsapp" />
           Solicitar información
         </a>
       </footer>
