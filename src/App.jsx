@@ -397,6 +397,13 @@ function AppLayout({ location }) {
   return (
     <div className="app-shell" ref={rootRef}>
       <header className="top-nav">
+        <Link className="brand-mark" to="/" aria-label="ALPHA inicio">
+          <picture>
+            <source srcSet="/alpha-logo-dark.svg" media="(prefers-color-scheme: light)" />
+            <img src="/alpha-logo-light.svg" alt="" aria-hidden="true" />
+          </picture>
+        </Link>
+
         <Link className="brand" to="/">ALPHA</Link>
 
         <nav className="desktop-nav">
@@ -424,7 +431,7 @@ function AppLayout({ location }) {
           type="button"
           className={`menu-toggle ${menuOpen ? 'open' : ''}`}
           onClick={() => setMenuOpen((prev) => !prev)}
-          aria-label="Abrir menu"
+          aria-label={menuOpen ? 'Cerrar menu' : 'Abrir menu'}
           aria-expanded={menuOpen}
         >
           <span />
