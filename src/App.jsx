@@ -438,7 +438,7 @@ function AppLayout({ location }) {
       <header className="top-nav">
         <Link className="brand-mark" to="/" aria-label="ALPHA inicio">
           <img
-            src={theme === 'dark' ? '/alpha-logo-light.svg' : '/alpha-logo-dark.svg'}
+            src={theme === 'dark' ? '/alpha-logo-light.png' : '/alpha-logo-dark.png'}
             alt=""
             aria-hidden="true"
           />
