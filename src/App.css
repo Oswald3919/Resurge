@@ -37,6 +37,13 @@
   --faq-bg:
     radial-gradient(480px 260px at 94% 0%, rgba(217, 178, 76, 0.12), transparent 70%),
     linear-gradient(155deg, rgba(255, 255, 255, 0.92), rgba(241, 247, 255, 0.86));
+  --faq-open-bg:
+    radial-gradient(280px 140px at 88% 12%, rgba(217, 178, 76, 0.12), transparent 70%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(246, 249, 253, 0.84));
+  --faq-open-border: rgba(201, 158, 51, 0.36);
+  --faq-open-shadow: 0 20px 54px rgba(28, 44, 66, 0.13), 0 0 24px rgba(201, 158, 51, 0.1);
+  --faq-toggle-bg: rgba(217, 178, 76, 0.08);
+  --faq-toggle-open-bg: rgba(217, 178, 76, 0.14);
   --timeline-card-bg: linear-gradient(155deg, rgba(255, 255, 255, 0.88), rgba(238, 245, 255, 0.82));
   --timeline-text: #53667f;
   --timeline-card-border: rgba(126, 146, 174, 0.24);
@@ -105,6 +112,13 @@
   --faq-bg:
     radial-gradient(480px 260px at 94% 0%, rgba(217, 178, 76, 0.12), transparent 70%),
     linear-gradient(155deg, rgba(10, 27, 51, 0.94), rgba(4, 14, 30, 0.96));
+  --faq-open-bg:
+    radial-gradient(280px 140px at 88% 12%, rgba(217, 178, 76, 0.12), transparent 70%),
+    linear-gradient(145deg, rgba(18, 39, 68, 0.92), rgba(7, 20, 38, 0.9));
+  --faq-open-border: rgba(240, 200, 101, 0.42);
+  --faq-open-shadow: 0 22px 58px rgba(0, 0, 0, 0.34), 0 0 30px rgba(217, 178, 76, 0.12);
+  --faq-toggle-bg: rgba(217, 178, 76, 0.08);
+  --faq-toggle-open-bg: rgba(217, 178, 76, 0.16);
   --timeline-card-bg: linear-gradient(155deg, rgba(17, 40, 70, 0.88), rgba(8, 23, 44, 0.9));
   --timeline-text: #a8bbd8;
   --timeline-card-border: #2a4467;
@@ -1118,12 +1132,9 @@ textarea {
 }
 
 .faq-item.open {
-  border-color: rgba(240, 200, 101, 0.42);
-  background:
-    radial-gradient(280px 140px at 88% 12%, rgba(217, 178, 76, 0.12), transparent 70%),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
-    rgba(10, 24, 45, 0.82);
-  box-shadow: 0 22px 58px rgba(0, 0, 0, 0.34), 0 0 30px rgba(217, 178, 76, 0.12);
+  border-color: var(--faq-open-border);
+  background: var(--faq-open-bg);
+  box-shadow: var(--faq-open-shadow);
 }
 
 .faq-question {
@@ -1157,7 +1168,7 @@ textarea {
   place-items: center;
   color: #f0d99b;
   border: 1px solid rgba(217, 178, 76, 0.32);
-  background: rgba(217, 178, 76, 0.08);
+  background: var(--faq-toggle-bg);
   transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -1168,7 +1179,7 @@ textarea {
 
 .faq-item.open .faq-toggle {
   transform: rotate(180deg);
-  background: rgba(217, 178, 76, 0.16);
+  background: var(--faq-toggle-open-bg);
   box-shadow: 0 0 22px rgba(217, 178, 76, 0.18);
 }
 
@@ -1232,17 +1243,21 @@ textarea {
   position: absolute;
   inset: auto 0 0;
   padding: 1rem;
-  background: linear-gradient(to top, rgba(2, 10, 22, 0.93), rgba(2, 10, 22, 0.16));
+  color: #fff;
+  background:
+    linear-gradient(to top, rgba(2, 10, 22, 0.96), rgba(2, 10, 22, 0.44) 58%, rgba(2, 10, 22, 0.05));
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.62);
 }
 
 .showcase-content small {
-  color: #dfc982;
+  color: rgba(255, 255, 255, 0.82);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
 .showcase-content h3 {
   margin: 0.3rem 0 0.55rem;
+  color: #fff;
 }
 
 .showcase-content a {
@@ -1250,6 +1265,9 @@ textarea {
   padding: 0.43rem 0.7rem;
   border-radius: 8px;
   border: 1px solid rgba(217, 178, 76, 0.45);
+  color: #fff;
+  background: rgba(2, 10, 22, 0.26);
+  text-shadow: none;
   font-size: 0.92rem;
 }
 
