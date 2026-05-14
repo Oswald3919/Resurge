@@ -16,6 +16,18 @@ const pageLinks = [
   { to: '/catalogo', label: 'Demo Catalogo' },
 ]
 
+function getStoredTheme() {
+  if (typeof window === 'undefined') return 'light'
+
+  try {
+    const savedTheme = window.localStorage.getItem('alpha-theme')
+    if (savedTheme === 'light' || savedTheme === 'dark') return savedTheme
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  } catch {
+    return 'light'
+  }
+}
+
 const showcasePages = [
   {
     title: 'Tienda Completa',
@@ -323,6 +335,23 @@ function FaqChevron() {
   )
 }
 
+function ThemeIcon({ theme }) {
+  if (theme === 'dark') {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+        <path d="M20.5 14.2A7.9 7.9 0 0 1 9.8 3.5 8.7 8.7 0 1 0 20.5 14.2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    )
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+      <circle cx="12" cy="12" r="4.4" stroke="currentColor" strokeWidth="2" />
+      <path d="M12 2.8v2M12 19.2v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.8 12h2M19.2 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  )
+}
+
 function App() {
   const location = useLocation()
   return <AppLayout key={location.pathname} location={location} />
@@ -331,6 +360,7 @@ function App() {
 function AppLayout({ location }) {
   const rootRef = useRef(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [theme, setTheme] = useState(getStoredTheme)
 
   useEffect(() => {
     const themeMap = {
@@ -340,8 +370,17 @@ function AppLayout({ location }) {
       '/catalogo': 'theme-catalog',
     }
 
-    document.body.dataset.theme = themeMap[location.pathname] || 'theme-home'
+    document.body.dataset.pageTheme = themeMap[location.pathname] || 'theme-home'
   }, [location.pathname])
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    try {
+      window.localStorage.setItem('alpha-theme', theme)
+    } catch {
+      // Theme still applies for this session when storage is unavailable.
+    }
+  }, [theme])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -398,10 +437,11 @@ function AppLayout({ location }) {
     <div className="app-shell" ref={rootRef}>
       <header className="top-nav">
         <Link className="brand-mark" to="/" aria-label="ALPHA inicio">
-          <picture>
-            <source srcSet="/alpha-logo-dark.svg" media="(prefers-color-scheme: light)" />
-            <img src="/alpha-logo-light.svg" alt="" aria-hidden="true" />
-          </picture>
+          <img
+            src={theme === 'dark' ? '/alpha-logo-light.svg' : '/alpha-logo-dark.svg'}
+            alt=""
+            aria-hidden="true"
+          />
         </Link>
 
         <Link className="brand" to="/">ALPHA</Link>
@@ -438,6 +478,16 @@ function AppLayout({ location }) {
           <span />
         </button>
       </header>
+
+      <button
+        type="button"
+        className="theme-toggle"
+        onClick={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))}
+        aria-label={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+        title={theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
+      >
+        <ThemeIcon theme={theme} />
+      </button>
 
       <AnimatePresence>
         {menuOpen && (
@@ -608,6 +658,8 @@ function HomePage() {
         <img
           src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=80"
           alt="Equipo creativo trabajando en experiencias web"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="home-cinematic-overlay" />
         <div className="home-cinematic-content">
@@ -641,6 +693,8 @@ function HomePage() {
           <img
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=80"
             alt="Equipo ALPHA colaborando en estrategia y diseño"
+            loading="lazy"
+            decoding="async"
           />
         </article>
         <article className="about-copy">
@@ -732,7 +786,7 @@ function HomePage() {
               </div>
               <p className="testimonial-text">“{testimonial.text}”</p>
               <div className="testimonial-person">
-                <img src={testimonial.image} alt={testimonial.name} loading="lazy" />
+                <img src={testimonial.image} alt={testimonial.name} loading="lazy" decoding="async" />
                 <div>
                   <strong>{testimonial.name}</strong>
                   <span>{testimonial.role}</span>
@@ -798,7 +852,7 @@ function HomePage() {
               whileHover={{ y: -8 }}
               transition={{ type: 'spring', stiffness: 260, damping: 20 }}
             >
-              <img src={page.image} alt={page.title} loading="lazy" />
+              <img src={page.image} alt={page.title} loading="lazy" decoding="async" />
               <div className="showcase-content">
                 <small>{page.subtitle}</small>
                 <h3>{page.title}</h3>
@@ -1010,11 +1064,15 @@ function StoreDemoPage() {
             const isFavorite = favorites.includes(product.id)
             return (
               <article key={product.id} className="product-card">
-                <img src={product.image} alt={product.name} loading="lazy" />
+                <img src={product.image} alt={product.name} loading="lazy" decoding="async" />
                 <div className="product-body">
                   <div className="product-top">
                     <span>{product.category}</span>
-                    <button type="button" onClick={() => toggleFavorite(product.id)}>
+                    <button
+                      type="button"
+                      onClick={() => toggleFavorite(product.id)}
+                      aria-label={isFavorite ? `Quitar ${product.name} de guardados` : `Guardar ${product.name}`}
+                    >
                       {isFavorite ? 'Guardado' : 'Guardar'}
                     </button>
                   </div>
@@ -1053,21 +1111,21 @@ function StoreDemoPage() {
               <div className="cart-items">
                 {cart.map((item) => (
                   <div key={item.id} className="cart-item">
-                    <img src={item.image} alt={item.name} />
+                    <img src={item.image} alt={item.name} loading="lazy" decoding="async" />
                     <div>
                       <strong>{item.name}</strong>
                       <span>{formatCurrency(item.salePrice)}</span>
                     </div>
                     <div className="qty-controls">
-                      <button type="button" onClick={() => updateQty(item.id, 'down')}>
+                      <button type="button" onClick={() => updateQty(item.id, 'down')} aria-label={`Reducir cantidad de ${item.name}`}>
                         -
                       </button>
                       <span>{item.qty}</span>
-                      <button type="button" onClick={() => updateQty(item.id, 'up')}>
+                      <button type="button" onClick={() => updateQty(item.id, 'up')} aria-label={`Aumentar cantidad de ${item.name}`}>
                         +
                       </button>
                     </div>
-                    <button type="button" onClick={() => removeItem(item.id)}>
+                    <button type="button" onClick={() => removeItem(item.id)} aria-label={`Eliminar ${item.name} del carrito`}>
                       X
                     </button>
                   </div>
@@ -1417,7 +1475,7 @@ function CatalogDemoPage() {
       <section className="catalog-grid reveal">
         {currentItems.map((item) => (
           <article key={item.id} className="catalog-card">
-            <img src={item.image} alt={item.title} loading="lazy" />
+            <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
             <div className="catalog-body">
               <small>{item.category}</small>
               <h3>{item.title}</h3>
@@ -1460,7 +1518,7 @@ function CatalogDemoPage() {
               exit={{ y: 24, opacity: 0 }}
               onClick={(event) => event.stopPropagation()}
             >
-              <img src={selected.image} alt={selected.title} />
+              <img src={selected.image} alt={selected.title} loading="lazy" decoding="async" />
               <div>
                 <small>{selected.category}</small>
                 <h3>{selected.title}</h3>
