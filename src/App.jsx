@@ -289,6 +289,40 @@ function TimelineIcon({ name }) {
   }
 }
 
+function QuoteIcon() {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false">
+      <path
+        d="M18.5 13.5C12.8 16 10 20.4 10 26.6c0 5 3 8 7.2 8 3.4 0 6-2.4 6-5.7 0-3.1-2.2-5.4-5.4-5.7.4-2.4 2-4.2 5-5.6l-4.3-4.1ZM35 13.5c-5.7 2.5-8.5 6.9-8.5 13.1 0 5 3 8 7.2 8 3.4 0 6-2.4 6-5.7 0-3.1-2.2-5.4-5.4-5.7.4-2.4 2-4.2 5-5.6L35 13.5Z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
+
+function StarRating() {
+  return (
+    <span className="testimonial-stars" aria-label="5 de 5 estrellas">
+      {Array.from({ length: 5 }).map((_, index) => (
+        <svg key={index} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="m12 3 2.6 5.5 6 .8-4.4 4.3 1.1 6-5.3-2.9-5.3 2.9 1.1-6-4.4-4.3 6-.8L12 3Z"
+            fill="currentColor"
+          />
+        </svg>
+      ))}
+    </span>
+  )
+}
+
+function FaqChevron() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+      <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
 function App() {
   const location = useLocation()
   return <AppLayout key={location.pathname} location={location} />
@@ -433,6 +467,8 @@ function AppLayout({ location }) {
 }
 
 function HomePage() {
+  const [openFaq, setOpenFaq] = useState('tiempo')
+
   const services = [
     {
       icon: '◉',
@@ -506,6 +542,50 @@ function HomePage() {
     {
       title: 'Base técnica sólida',
       text: 'Cuidamos rendimiento, responsive y mantenibilidad desde el inicio del proyecto.',
+    },
+  ]
+
+  const testimonials = [
+    {
+      name: 'Mariana López',
+      role: 'Directora, Estudio Nube',
+      text: 'ALPHA nos ayudó a ordenar el mensaje y lanzar una web más clara. El proceso fue muy directo y el resultado se siente profesional sin perder personalidad.',
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=240&q=80',
+    },
+    {
+      name: 'Diego Santillán',
+      role: 'Fundador, Norte Café',
+      text: 'La nueva página se entiende rápido en celular y nos facilita responder solicitudes. Se nota el cuidado en diseño, velocidad y estructura.',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=240&q=80',
+    },
+    {
+      name: 'Paula Estrada',
+      role: 'Marketing, Clínica Aura',
+      text: 'Nos entregaron una experiencia sobria, confiable y fácil de mantener. La comunicación fue clara y cada sección quedó con intención.',
+      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=80',
+    },
+  ]
+
+  const faqs = [
+    {
+      id: 'tiempo',
+      question: 'Cuánto tarda un proyecto?',
+      answer: 'Normalmente entre 3 y 8 semanas, según alcance, cantidad de secciones, contenido disponible e integraciones necesarias.',
+    },
+    {
+      id: 'servicio',
+      question: 'Solo hacen diseño o también desarrollo?',
+      answer: 'Trabajamos el proceso completo: estrategia, UX/UI, desarrollo responsive, publicación y mejoras posteriores cuando el proyecto lo requiere.',
+    },
+    {
+      id: 'redisenio',
+      question: 'Pueden mejorar una web existente?',
+      answer: 'Sí. Revisamos estructura, claridad visual, rendimiento y experiencia móvil para decidir qué conviene rediseñar, conservar o reconstruir.',
+    },
+    {
+      id: 'contenido',
+      question: 'Necesito tener todo el contenido listo?',
+      answer: 'No necesariamente. Podemos partir de una idea base, ordenar la información contigo y ayudarte a convertirla en textos claros para la web.',
     },
   ]
 
@@ -621,25 +701,79 @@ function HomePage() {
         </div>
       </section>
 
+      <section className="testimonials-section reveal home-spacious">
+        <div className="section-title-row testimonials-heading">
+          <p className="eyebrow">Testimonios</p>
+          <h2>Clientes que necesitaban claridad, presencia y una web lista para usarse.</h2>
+          <p>Experiencias reales de trabajo: comunicación simple, diseño cuidado y entregas con intención.</p>
+        </div>
+        <div className="testimonial-grid">
+          {testimonials.map((testimonial, index) => (
+            <motion.article
+              key={testimonial.name}
+              className="testimonial-card"
+              initial={{ opacity: 0, y: 34, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ duration: 0.65, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -8, scale: 1.015 }}
+            >
+              <span className="testimonial-glow" aria-hidden="true" />
+              <div className="testimonial-topline">
+                <span className="quote-icon"><QuoteIcon /></span>
+                <StarRating />
+              </div>
+              <p className="testimonial-text">“{testimonial.text}”</p>
+              <div className="testimonial-person">
+                <img src={testimonial.image} alt={testimonial.name} loading="lazy" />
+                <div>
+                  <strong>{testimonial.name}</strong>
+                  <span>{testimonial.role}</span>
+                </div>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </section>
+
       <section className="faq-section reveal home-spacious">
         <div className="section-title-row">
-          <p className="eyebrow">Contacto</p>
+          <p className="eyebrow">FAQ</p>
           <h2>Preguntas frecuentes antes de iniciar.</h2>
-          <p>Información breve para tomar una decisión con claridad.</p>
+          <p>Respuestas breves para tomar la siguiente decisión con claridad y sin vueltas.</p>
         </div>
-        <div className="faq-grid">
-          <article>
-            <h3>Cuanto tarda un proyecto?</h3>
-            <p>Entre 3 y 8 semanas, según alcance.</p>
-          </article>
-          <article>
-            <h3>Solo hacen diseno o tambien desarrollo?</h3>
-            <p>Todo: estrategia, UX/UI, desarrollo y mejoras.</p>
-          </article>
-          <article>
-            <h3>Pueden mejorar una web existente?</h3>
-            <p>Sí. Auditamos y rediseñamos lo que más impacta.</p>
-          </article>
+        <div className="faq-list">
+          {faqs.map((faq) => {
+            const isOpen = openFaq === faq.id
+            return (
+              <article key={faq.id} className={`faq-item ${isOpen ? 'open' : ''}`}>
+                <button
+                  type="button"
+                  className="faq-question"
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${faq.id}`}
+                  onClick={() => setOpenFaq(isOpen ? null : faq.id)}
+                >
+                  <span>{faq.question}</span>
+                  <span className="faq-toggle"><FaqChevron /></span>
+                </button>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      id={`faq-answer-${faq.id}`}
+                      className="faq-answer"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <p>{faq.answer}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </article>
+            )
+          })}
         </div>
       </section>
 
