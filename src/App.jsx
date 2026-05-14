@@ -444,7 +444,9 @@ function AppLayout({ location }) {
           />
         </Link>
 
-        <Link className="brand" to="/">ALPHA</Link>
+        <Link className="brand notranslate" to="/" translate="no" aria-label="ALPHA">
+          <span translate="no">ALPHA</span>
+        </Link>
 
         <nav className="desktop-nav">
           {pageLinks.map((link) => (
