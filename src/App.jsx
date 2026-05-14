@@ -8,6 +8,9 @@ import './App.css'
 gsap.registerPlugin(ScrollTrigger)
 
 const PHONE_NUMBER = '523340187767'
+const DISPLAY_PHONE = '3340187767'
+const INSTAGRAM_HANDLE = '@a.phamx'
+const INSTAGRAM_URL = 'https://www.instagram.com/a.phamx'
 
 const pageLinks = [
   { to: '/', label: 'Inicio' },
@@ -301,6 +304,62 @@ function TimelineIcon({ name }) {
   }
 }
 
+function ServiceIcon({ name }) {
+  const commonProps = {
+    viewBox: '0 0 56 56',
+    fill: 'none',
+    xmlns: 'http://www.w3.org/2000/svg',
+    focusable: 'false',
+    'aria-hidden': 'true',
+  }
+
+  const strokeProps = {
+    stroke: 'currentColor',
+    strokeWidth: 3,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+  }
+
+  switch (name) {
+    case 'corporate':
+      return (
+        <svg {...commonProps}>
+          <rect x="10" y="12" width="36" height="32" rx="8" {...strokeProps} />
+          <path d="M18 22h20M18 30h12M20 44V34h16v10" {...strokeProps} />
+          <path d="M37 8v8M33 12h8" {...strokeProps} />
+        </svg>
+      )
+    case 'landing':
+      return (
+        <svg {...commonProps}>
+          <path d="M13 42h30" {...strokeProps} />
+          <path d="M17 14h22a4 4 0 0 1 4 4v18H13V18a4 4 0 0 1 4-4Z" {...strokeProps} />
+          <path d="M22 23h12M22 29h7" {...strokeProps} />
+          <path d="m34 31 8-8M42 23v7M42 23h-7" {...strokeProps} />
+        </svg>
+      )
+    case 'commerce':
+      return (
+        <svg {...commonProps}>
+          <path d="M14 18h32l-4 16H19L14 12h-4" {...strokeProps} />
+          <path d="M22 24h17M24 44a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM39 44a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" {...strokeProps} />
+          <path d="M23 10h10l5 8H18l5-8Z" {...strokeProps} />
+        </svg>
+      )
+    case 'ux':
+      return (
+        <svg {...commonProps}>
+          <path d="M12 35c8.5-15 21.5-15 32 0" {...strokeProps} />
+          <path d="M18 39c6.5 7 14.5 7 21 0" {...strokeProps} />
+          <path d="M28 12v9M20 16l5 6M36 16l-5 6" {...strokeProps} />
+          <circle cx="28" cy="29" r="5" {...strokeProps} />
+        </svg>
+      )
+    default:
+      return null
+  }
+}
+
 function QuoteIcon() {
   return (
     <svg viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false">
@@ -465,6 +524,7 @@ function AppLayout({ location }) {
           href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20ALPHA,%20quiero%20una%20demo%20como%20esta`}
           target="_blank"
           rel="noreferrer"
+          aria-label={`Contactar a ALPHA por WhatsApp al ${DISPLAY_PHONE}`}
         >
           WhatsApp
         </a>
@@ -490,6 +550,16 @@ function AppLayout({ location }) {
       >
         <ThemeIcon theme={theme} />
       </button>
+
+      <a
+        className="whatsapp-float"
+        href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20ALPHA,%20quiero%20informacion%20sobre%20sus%20servicios`}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`Contactar a ALPHA por WhatsApp al ${DISPLAY_PHONE}`}
+      >
+        <span>WA</span>
+      </a>
 
       <AnimatePresence>
         {menuOpen && (
@@ -530,22 +600,30 @@ function HomePage() {
 
   const services = [
     {
-      icon: '◉',
+      number: '01',
+      icon: 'corporate',
+      accent: 'aqua',
       title: 'Sitios corporativos',
       text: 'Creamos páginas web modernas para negocios que quieren verse profesionales.',
     },
     {
-      icon: '△',
+      number: '02',
+      icon: 'landing',
+      accent: 'gold',
       title: 'Landing pages',
       text: 'Diseñamos sitios rápidos, claros y listos para vender con mensajes precisos.',
     },
     {
-      icon: '▦',
+      number: '03',
+      icon: 'commerce',
+      accent: 'cyan',
       title: 'Tiendas y catálogos',
       text: 'Implementamos experiencias de compra ordenadas, confiables y fáciles de administrar.',
     },
     {
-      icon: '↗',
+      number: '04',
+      icon: 'ux',
+      accent: 'violet',
       title: 'Rediseño UX/UI',
       text: 'Mejoramos estructuras existentes para aumentar claridad y confianza desde el primer vistazo.',
     },
@@ -711,9 +789,17 @@ function HomePage() {
           <p className="eyebrow">Qué hacemos</p>
           <h2>Diseño y desarrollo web con foco comercial y ejecución limpia.</h2>
         </div>
-        {services.map((item) => (
-          <article key={item.title} className="feature-card">
-            <span className="symbol">{item.icon}</span>
+        {services.map((item, index) => (
+          <article
+            key={item.title}
+            className={`feature-card tone-${item.accent}`}
+            style={{ '--service-index': index }}
+          >
+            <span className="feature-glow" aria-hidden="true" />
+            <span className="feature-number">{item.number}</span>
+            <span className="symbol">
+              <ServiceIcon name={item.icon} />
+            </span>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
             <span className="card-arrow">→</span>
@@ -882,16 +968,23 @@ function HomePage() {
       </section>
 
       <section className="home-cta reveal home-spacious">
-        <p className="eyebrow">CTA · pedir cotización</p>
+        <p className="eyebrow">Contacto · pedir cotización</p>
         <h2>Cuéntanos qué necesitas y te enviamos una propuesta clara para tu sitio web.</h2>
         <p>Definimos alcance, tiempos y siguiente paso sin promesas exageradas ni métricas inventadas.</p>
-        <a className="solid-btn cta-inline" href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20ALPHA,%20quiero%20cotizar%20mi%20pagina%20web`} target="_blank" rel="noreferrer">Pedir cotización</a>
+        <div className="contact-actions">
+          <a className="solid-btn cta-inline" href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20ALPHA,%20quiero%20cotizar%20mi%20pagina%20web`} target="_blank" rel="noreferrer">WhatsApp {DISPLAY_PHONE}</a>
+          <a className="ghost-btn cta-inline" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Instagram {INSTAGRAM_HANDLE}</a>
+        </div>
       </section>
 
       <footer className="site-footer reveal">
         <div>
           <strong>ALPHA</strong>
           <p>Diseño y desarrollo web para negocios que quieren comunicar mejor y vender con claridad.</p>
+          <div className="footer-contact">
+            <a href={`tel:+${PHONE_NUMBER}`}>{DISPLAY_PHONE}</a>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">{INSTAGRAM_HANDLE}</a>
+          </div>
         </div>
         <a
           href={`https://wa.me/${PHONE_NUMBER}?text=Hola%20ALPHA,%20quiero%20informacion%20sobre%20una%20pagina%20web`}

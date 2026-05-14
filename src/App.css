@@ -388,6 +388,33 @@ textarea {
   transform: rotate(12deg) scale(1.05);
 }
 
+.whatsapp-float {
+  position: fixed;
+  left: clamp(0.85rem, 2.4vw, 1.35rem);
+  bottom: clamp(0.9rem, 3vw, 1.5rem);
+  z-index: 80;
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
+  display: inline-grid;
+  place-items: center;
+  color: var(--button-text);
+  border: 1px solid rgba(217, 178, 76, 0.42);
+  background: linear-gradient(135deg, #cfa846, var(--accent-strong));
+  box-shadow: var(--shadow), 0 0 28px rgba(217, 178, 76, 0.18);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+}
+
+.whatsapp-float:hover,
+.whatsapp-float:active {
+  transform: translateY(-2px) scale(1.04);
+  filter: brightness(1.03);
+  box-shadow: var(--shadow), 0 0 36px rgba(217, 178, 76, 0.24);
+}
+
 .mobile-overlay {
   position: fixed;
   inset: 0;
@@ -676,36 +703,120 @@ textarea {
 }
 
 .feature-card {
-  padding: 1rem;
+  min-height: 275px;
+  padding: 1.05rem;
   position: relative;
   overflow: hidden;
-  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  isolation: isolate;
+  border-color: color-mix(in srgb, var(--step-a) 24%, var(--line));
+  display: grid;
+  align-content: space-between;
+  gap: 0.95rem;
+  animation: timelineCardIn 0.7s both;
+  animation-delay: calc(var(--service-index) * 80ms);
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
 .feature-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(217, 178, 76, 0.44);
-  background: var(--feature-hover-bg);
+  transform: translateY(-7px);
+  border-color: color-mix(in srgb, var(--step-a) 48%, transparent);
+  background:
+    radial-gradient(circle at 78% 12%, color-mix(in srgb, var(--step-a) 18%, transparent), transparent 36%),
+    var(--feature-hover-bg);
+  box-shadow: var(--timeline-card-hover-shadow);
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 18% 18%, color-mix(in srgb, var(--step-a) 16%, transparent), transparent 38%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), transparent 46%);
+  opacity: 0.82;
+}
+
+.feature-card::after {
+  content: '';
+  position: absolute;
+  left: 1.18rem;
+  right: 1.18rem;
+  top: 5.45rem;
+  height: 1px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--step-a) 58%, transparent), transparent);
+  opacity: 0.72;
+}
+
+.feature-glow {
+  position: absolute;
+  right: -42px;
+  top: -42px;
+  width: 130px;
+  height: 130px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--step-a) 22%, transparent);
+  filter: blur(28px);
+  opacity: var(--timeline-glow-opacity);
+  pointer-events: none;
+}
+
+.feature-number {
+  position: absolute;
+  right: 1rem;
+  top: 0.85rem;
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  line-height: 0.85;
+  font-weight: 800;
+  color: color-mix(in srgb, var(--step-a) 32%, transparent);
 }
 
 .feature-card .symbol {
   display: inline-grid;
   place-items: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  border: 1px solid rgba(217, 178, 76, 0.45);
-  color: var(--accent-strong);
-  font-size: 0.78rem;
-  font-weight: 800;
+  width: 76px;
+  height: 76px;
+  border-radius: 22px;
+  border: 1px solid color-mix(in srgb, var(--step-a) 40%, transparent);
+  color: var(--timeline-mobile-icon);
+  background:
+    radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.28), transparent 34%),
+    var(--timeline-icon-bg);
+  box-shadow: var(--timeline-icon-shadow);
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.feature-card:hover .symbol {
+  transform: translateY(-3px) scale(1.05) rotate(-3deg);
+  box-shadow: var(--timeline-icon-shadow), 0 0 32px color-mix(in srgb, var(--step-a) 24%, transparent);
+}
+
+.feature-card .symbol svg {
+  width: 58%;
+  height: 58%;
+  overflow: visible;
 }
 
 .card-arrow {
   position: absolute;
-  right: 0.9rem;
-  bottom: 0.7rem;
-  color: rgba(217, 178, 76, 0.7);
-  font-size: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 13px;
+  display: inline-grid;
+  place-items: center;
+  color: var(--timeline-mobile-icon);
+  border: 1px solid color-mix(in srgb, var(--step-a) 34%, transparent);
+  background: color-mix(in srgb, var(--step-a) 10%, transparent);
+  font-size: 1.05rem;
+  transition: transform 0.24s ease, background 0.24s ease;
+}
+
+.feature-card:hover .card-arrow {
+  transform: translateX(3px);
+  background: color-mix(in srgb, var(--step-a) 16%, transparent);
 }
 
 .feature-card h3,
@@ -713,8 +824,14 @@ textarea {
 .faq-grid h3,
 .product-body h3,
 .catalog-body h3 {
-  margin: 0.7rem 0 0;
+  margin: 0.25rem 0 0;
   font-family: 'Manrope', sans-serif;
+}
+
+.feature-card h3 {
+  font-size: clamp(1.18rem, 2vw, 1.42rem);
+  line-height: 1.08;
+  padding-right: 2.7rem;
 }
 
 .feature-card p,
@@ -726,6 +843,12 @@ textarea {
 .booking-list p {
   color: var(--muted);
   line-height: 1.55;
+}
+
+.feature-card p {
+  max-width: 28ch;
+  margin: 0;
+  padding-right: 1.8rem;
 }
 
 .stats-row article {
@@ -853,6 +976,11 @@ textarea {
 }
 
 [data-theme='light'] .timeline-icon {
+  color: var(--step-a);
+}
+
+[data-theme='light'] .feature-card .symbol,
+[data-theme='light'] .feature-card .card-arrow {
   color: var(--step-a);
 }
 
@@ -1288,6 +1416,18 @@ textarea {
   padding: 0.76rem 1rem;
 }
 
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.contact-actions .solid-btn,
+.contact-actions .ghost-btn {
+  width: auto;
+}
+
 .toolbar,
 .catalog-toolbar {
   margin-top: 1rem;
@@ -1663,6 +1803,18 @@ textarea {
   color: #f0d99b;
 }
 
+.footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.footer-contact a {
+  color: var(--text);
+  background: var(--ghost-bg);
+}
+
 @media (max-width: 1100px) {
   .showcase-grid,
   .testimonial-grid,
@@ -1740,6 +1892,14 @@ textarea {
     height: 22px;
   }
 
+  .whatsapp-float {
+    width: 48px;
+    height: 48px;
+    left: max(0.78rem, env(safe-area-inset-left));
+    bottom: max(0.78rem, env(safe-area-inset-bottom));
+    border-radius: 16px;
+  }
+
   .mobile-overlay {
     display: block;
   }
@@ -1779,6 +1939,25 @@ textarea {
 
   .testimonial-text {
     font-size: 1rem;
+  }
+
+  .feature-grid {
+    gap: 1.15rem;
+  }
+
+  .feature-card {
+    min-height: 250px;
+    border-radius: 22px;
+    padding: 1.05rem;
+  }
+
+  .feature-card .symbol {
+    width: 72px;
+    height: 72px;
+  }
+
+  .feature-card::after {
+    top: 5.25rem;
   }
 
   .toolbar,
@@ -2056,5 +2235,23 @@ textarea {
 
   .timeline-number {
     min-width: 4.25rem;
+  }
+
+  .contact-actions,
+  .contact-actions .solid-btn,
+  .contact-actions .ghost-btn {
+    width: 100%;
+  }
+
+  .feature-card {
+    min-height: 270px;
+  }
+
+  .feature-number {
+    font-size: 3.1rem;
+  }
+
+  .feature-card p {
+    max-width: 30ch;
   }
 }
