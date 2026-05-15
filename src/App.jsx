@@ -18,18 +18,6 @@ const pageLinks = [
   { to: '/catalogo', label: 'Demo Catalogo' },
 ]
 
-function HeroOrbs() {
-  return (
-    <div className="hero-orbs" aria-hidden="true">
-      <span className="floating-orb orb-1" />
-      <span className="floating-orb orb-2" />
-      <span className="floating-orb orb-3" />
-      <span className="floating-orb orb-4" />
-      <span className="floating-orb orb-5" />
-    </div>
-  )
-}
-
 function getStoredTheme() {
   if (typeof window === 'undefined') return 'light'
 
@@ -536,19 +524,6 @@ function AppLayout({ location }) {
         })
       })
 
-      const orbs = shell.querySelectorAll('.floating-orb')
-      orbs.forEach((orb, index) => {
-        gsap.to(orb, {
-          x: 18 + index * 3,
-          y: 14 + index * 2,
-          scale: 1 + (index % 3) * 0.03,
-          duration: 4.2 + index * 0.35,
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut',
-        })
-      })
-
       if (scrollHint) {
         gsap.to(scrollHint, { y: 6, duration: 1.2, repeat: -1, yoyo: true, ease: 'sine.inOut' })
       }
@@ -863,7 +838,6 @@ function HomePage() {
           decoding="async"
         />
         <div className="home-cinematic-overlay" />
-        <HeroOrbs />
         <div className="home-cinematic-content">
           <p className="eyebrow">ALPHA · agencia web</p>
           <div className="hero-tags">
