@@ -18,6 +18,18 @@ const pageLinks = [
   { to: '/catalogo', label: 'Demo Catalogo' },
 ]
 
+function HeroOrbs() {
+  return (
+    <div className="hero-orbs" aria-hidden="true">
+      <span className="floating-orb orb-1" />
+      <span className="floating-orb orb-2" />
+      <span className="floating-orb orb-3" />
+      <span className="floating-orb orb-4" />
+      <span className="floating-orb orb-5" />
+    </div>
+  )
+}
+
 function getStoredTheme() {
   if (typeof window === 'undefined') return 'light'
 
@@ -480,8 +492,12 @@ function AppLayout({ location }) {
       if (window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches) return
 
       const hero = shell.querySelector('.page-hero, .home-cinematic-hero')
+      const heroImage = hero?.querySelector(':scope > img')
       const headlineLines = hero?.querySelectorAll('.headline-line') ?? []
       const ctas = hero?.querySelectorAll('.hero-clean-actions a, .hero-clean-actions button, .hero-social-links a') ?? []
+      const tagItems = hero?.querySelectorAll('.hero-tags span') ?? []
+      const heroCopy = hero?.querySelectorAll('.home-cinematic-content p, .page-hero p') ?? []
+      const scrollHint = hero?.querySelector('.scroll-hint')
 
       const introTl = gsap.timeline({ defaults: { ease: 'power3.out' } })
       introTl.from('.top-nav', { y: -24, autoAlpha: 0, duration: 0.65 }, 0)
@@ -492,6 +508,14 @@ function AppLayout({ location }) {
           { yPercent: 120, autoAlpha: 0, duration: 0.85, stagger: 0.08, ease: 'power4.out' },
           0.1
         )
+      }
+
+      if (tagItems.length) {
+        introTl.from(tagItems, { y: 8, autoAlpha: 0, duration: 0.45, stagger: 0.04 }, 0.22)
+      }
+
+      if (heroCopy.length) {
+        introTl.from(heroCopy, { y: 10, autoAlpha: 0, duration: 0.55 }, 0.28)
       }
 
       if (ctas.length) {
@@ -515,15 +539,32 @@ function AppLayout({ location }) {
       const orbs = shell.querySelectorAll('.floating-orb')
       orbs.forEach((orb, index) => {
         gsap.to(orb, {
-          x: 14 + index * 2,
-          y: 10 + index * 1.5,
-          scale: 1 + (index % 3) * 0.02,
-          duration: 3.6 + index * 0.25,
+          x: 18 + index * 3,
+          y: 14 + index * 2,
+          scale: 1 + (index % 3) * 0.03,
+          duration: 4.2 + index * 0.35,
           repeat: -1,
           yoyo: true,
           ease: 'sine.inOut',
         })
       })
+
+      if (scrollHint) {
+        gsap.to(scrollHint, { y: 6, duration: 1.2, repeat: -1, yoyo: true, ease: 'sine.inOut' })
+      }
+
+      if (heroImage) {
+        gsap.to(heroImage, {
+          yPercent: 8,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: hero,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        })
+      }
 
       requestAnimationFrame(() => {
         gsap.core.globals().ScrollTrigger?.refresh?.()
@@ -822,6 +863,7 @@ function HomePage() {
           decoding="async"
         />
         <div className="home-cinematic-overlay" />
+        <HeroOrbs />
         <div className="home-cinematic-content">
           <p className="eyebrow">ALPHA · agencia web</p>
           <div className="hero-tags">

@@ -631,6 +631,64 @@ textarea {
   background: var(--hero-overlay);
 }
 
+.hero-orbs {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floating-orb {
+  position: absolute;
+  border-radius: 999px;
+  opacity: 0.55;
+  filter: blur(0.5px);
+  mix-blend-mode: screen;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.95), rgba(140, 190, 255, 0.35) 45%, rgba(22, 88, 255, 0) 70%);
+}
+
+.orb-1 {
+  width: clamp(140px, 18vw, 260px);
+  height: clamp(140px, 18vw, 260px);
+  top: 10%;
+  left: 8%;
+}
+
+.orb-2 {
+  width: clamp(120px, 16vw, 220px);
+  height: clamp(120px, 16vw, 220px);
+  top: 18%;
+  right: 10%;
+  opacity: 0.42;
+}
+
+.orb-3 {
+  width: clamp(180px, 22vw, 320px);
+  height: clamp(180px, 22vw, 320px);
+  bottom: 18%;
+  right: 14%;
+  opacity: 0.38;
+}
+
+.orb-4 {
+  width: clamp(110px, 14vw, 190px);
+  height: clamp(110px, 14vw, 190px);
+  bottom: 12%;
+  left: 18%;
+  opacity: 0.35;
+}
+
+.orb-5 {
+  width: clamp(90px, 12vw, 160px);
+  height: clamp(90px, 12vw, 160px);
+  top: 46%;
+  left: 52%;
+  opacity: 0.22;
+}
+
 .home-cinematic-content {
   position: relative;
   z-index: 2;
