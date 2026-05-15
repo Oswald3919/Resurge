@@ -1,11 +1,10 @@
-﻿import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
 import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
-
-gsap.registerPlugin(ScrollTrigger)
+import './gsap/setup'
 
 const PHONE_NUMBER = '523340187767'
 const DISPLAY_PHONE = '3340187767'
@@ -474,27 +473,35 @@ function AppLayout({ location }) {
     }
   }, [theme])
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.top-nav', {
-        y: -24,
-        opacity: 0,
-        duration: 0.65,
-        ease: 'power3.out',
-      })
+  useGSAP(
+    () => {
+      const shell = rootRef.current
+      if (!shell) return
+      if (window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches) return
 
-      gsap.from('.page-hero .headline-line', {
-        yPercent: 120,
-        opacity: 0,
-        duration: 0.85,
-        stagger: 0.08,
-        ease: 'power4.out',
-      })
+      const hero = shell.querySelector('.page-hero, .home-cinematic-hero')
+      const headlineLines = hero?.querySelectorAll('.headline-line') ?? []
+      const ctas = hero?.querySelectorAll('.hero-clean-actions a, .hero-clean-actions button, .hero-social-links a') ?? []
 
-      gsap.utils.toArray('.reveal').forEach((item) => {
+      const introTl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+      introTl.from('.top-nav', { y: -24, autoAlpha: 0, duration: 0.65 }, 0)
+
+      if (headlineLines.length) {
+        introTl.from(
+          headlineLines,
+          { yPercent: 120, autoAlpha: 0, duration: 0.85, stagger: 0.08, ease: 'power4.out' },
+          0.1
+        )
+      }
+
+      if (ctas.length) {
+        introTl.from(ctas, { y: 10, autoAlpha: 0, duration: 0.5, stagger: 0.03 }, 0.35)
+      }
+
+      gsap.utils.toArray(shell.querySelectorAll('.reveal')).forEach((item) => {
         gsap.from(item, {
           y: 36,
-          opacity: 0,
+          autoAlpha: 0,
           duration: 0.75,
           ease: 'power3.out',
           scrollTrigger: {
@@ -505,24 +512,37 @@ function AppLayout({ location }) {
         })
       })
 
-      gsap.to('.floating-orb', {
-        x: 20,
-        y: 14,
-        duration: 4,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
+      const orbs = shell.querySelectorAll('.floating-orb')
+      orbs.forEach((orb, index) => {
+        gsap.to(orb, {
+          x: 14 + index * 2,
+          y: 10 + index * 1.5,
+          scale: 1 + (index % 3) * 0.02,
+          duration: 3.6 + index * 0.25,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+        })
       })
-    }, rootRef)
 
-    return () => ctx.revert()
-  }, [location.pathname])
+      requestAnimationFrame(() => {
+        gsap.core.globals().ScrollTrigger?.refresh?.()
+      })
+    },
+    { scope: rootRef, dependencies: [location.pathname] }
+  )
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => {
       document.body.style.overflow = ''
     }
+  }, [menuOpen])
+
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      gsap.core.globals().ScrollTrigger?.refresh?.()
+    })
   }, [menuOpen])
 
   return (
