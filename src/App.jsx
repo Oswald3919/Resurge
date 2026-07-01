@@ -1411,6 +1411,7 @@ function RestaurantDemoPage() {
   const [bookings, setBookings] = useState([])
   const [bookedSlots, setBookedSlots] = useState({})
   const [message, setMessage] = useState('')
+  const [cargando, setCargando] = useState(false)
 
   const unavailableForDate = bookedSlots[form.date] || []
 
@@ -1421,11 +1422,11 @@ function RestaurantDemoPage() {
     }))
   }
 
-  const handleReserve = (event) => {
+  const handleReserve = async (event) => {
     event.preventDefault()
 
     if (!form.name || !form.phone || !form.date || !form.slot) {
-      setMessage('Completa nombre, telefono, fecha y horario.')
+      setMessage('Completa nombre, WhatsApp del cliente, fecha y horario.')
       return
     }
 
@@ -1441,19 +1442,51 @@ function RestaurantDemoPage() {
 
     const code = `ALP-${Math.floor(1000 + Math.random() * 9000)}`
 
-    const newBooking = {
-      code,
-      ...form,
+    const payload = {
+      codigo: code,
+      nombre_cliente: form.name,
+      telefono_cliente: form.phone,
+      fecha: form.date,
+      hora: form.slot,
+      personas: form.people,
+      telefono_empresa: '523312345678',
     }
 
-    setBookings((prev) => [newBooking, ...prev].slice(0, 5))
-    setBookedSlots((prev) => ({
-      ...prev,
-      [form.date]: [...(prev[form.date] || []), form.slot],
-    }))
+    try {
+      setCargando(true)
+      setMessage('Procesando reservación...')
 
-    setMessage(`Reservacion confirmada. Codigo: ${code}`)
-    setForm((prev) => ({ ...prev, slot: '', notes: '' }))
+      const response = await fetch('https://hook.us2.make.com/k6rd6fsok1r6oggspqhiy80fh9e7l6na', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+
+      if (!response.ok) {
+        throw new Error('Error al procesar la reserva con el servidor.')
+      }
+
+      const newBooking = {
+        code,
+        ...form,
+      }
+
+      setBookings((prev) => [newBooking, ...prev].slice(0, 5))
+      setBookedSlots((prev) => ({
+        ...prev,
+        [form.date]: [...(prev[form.date] || []), form.slot],
+      }))
+
+      setMessage(`Reservacion confirmada. Codigo: ${code}`)
+      setForm((prev) => ({ ...prev, slot: '', notes: '' }))
+    } catch (error) {
+      console.error(error)
+      setMessage('Hubo un problema al enviar la reservación. Inténtalo de nuevo.')
+    } finally {
+      setCargando(false)
+    }
   }
 
   return (
@@ -1482,12 +1515,12 @@ function RestaurantDemoPage() {
           </label>
 
           <label>
-            Telefono
+            WhatsApp del Cliente
             <input
               type="tel"
               value={form.phone}
               onChange={(event) => updateField('phone', event.target.value)}
-              placeholder="3340187767"
+              placeholder="ej. 523312345678"
             />
           </label>
 
@@ -1553,8 +1586,8 @@ function RestaurantDemoPage() {
             />
           </label>
 
-          <button type="submit" className="solid-btn">
-            Confirmar reservacion
+          <button type="submit" className="solid-btn" disabled={cargando}>
+            {cargando ? 'Procesando...' : 'Confirmar reservacion'}
           </button>
 
           {message && <p className="status-text">{message}</p>}
