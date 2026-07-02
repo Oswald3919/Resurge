@@ -1398,6 +1398,57 @@ function StoreDemoPage() {
   )
 }
 
+// Servicio modular de almacenamiento para reservaciones (fácil de migrar a base de datos externa como Supabase/Firebase)
+const bookingStorage = {
+  getReservations: () => {
+    try {
+      const data = window.localStorage.getItem('alpha_bookings')
+      return data ? JSON.parse(data) : []
+    } catch (error) {
+      console.error('Error al leer reservaciones de localStorage:', error)
+      return []
+    }
+  },
+
+  saveReservation: (booking) => {
+    try {
+      const bookings = bookingStorage.getReservations()
+      // Evita duplicados por el código único
+      if (bookings.some((b) => b.code === booking.code)) return bookings
+      const updated = [booking, ...bookings]
+      window.localStorage.setItem('alpha_bookings', JSON.stringify(updated))
+      return updated
+    } catch (error) {
+      console.error('Error al guardar reservación en localStorage:', error)
+      return []
+    }
+  },
+
+  deleteReservation: (code) => {
+    try {
+      const bookings = bookingStorage.getReservations()
+      const updated = bookings.filter((b) => b.code !== code)
+      window.localStorage.setItem('alpha_bookings', JSON.stringify(updated))
+      return updated
+    } catch (error) {
+      console.error('Error al eliminar reservación de localStorage:', error)
+      return []
+    }
+  },
+
+  updateReservation: (code, updatedData) => {
+    try {
+      const bookings = bookingStorage.getReservations()
+      const updated = bookings.map((b) => (b.code === code ? { ...b, ...updatedData } : b))
+      window.localStorage.setItem('alpha_bookings', JSON.stringify(updated))
+      return updated
+    } catch (error) {
+      console.error('Error al actualizar reservación en localStorage:', error)
+      return []
+    }
+  }
+}
+
 function RestaurantDemoPage() {
   const [form, setForm] = useState({
     name: '',
@@ -1414,6 +1465,19 @@ function RestaurantDemoPage() {
   const [cargando, setCargando] = useState(false)
 
   const unavailableForDate = bookedSlots[form.date] || []
+
+  // Cargar reservaciones persistentes al montar el componente
+  useEffect(() => {
+    const storedBookings = bookingStorage.getReservations()
+    setBookings(storedBookings)
+
+    // Re-popular slots ocupados
+    const slots = {}
+    storedBookings.forEach((b) => {
+      slots[b.date] = [...(slots[b.date] || []), b.slot]
+    })
+    setBookedSlots(slots)
+  }, [])
 
   const updateField = (field, value) => {
     setForm((prev) => ({
@@ -1473,7 +1537,9 @@ function RestaurantDemoPage() {
         ...form,
       }
 
-      setBookings((prev) => [newBooking, ...prev].slice(0, 5))
+      // Guardar de forma persistente y actualizar estado
+      const updatedBookings = bookingStorage.saveReservation(newBooking)
+      setBookings(updatedBookings)
       setBookedSlots((prev) => ({
         ...prev,
         [form.date]: [...(prev[form.date] || []), form.slot],
@@ -1487,6 +1553,18 @@ function RestaurantDemoPage() {
     } finally {
       setCargando(false)
     }
+  }
+
+  const handleDelete = (code) => {
+    const updatedBookings = bookingStorage.deleteReservation(code)
+    setBookings(updatedBookings)
+
+    // Re-calcular los slots ocupados para liberar el horario
+    const slots = {}
+    updatedBookings.forEach((b) => {
+      slots[b.date] = [...(slots[b.date] || []), b.slot]
+    })
+    setBookedSlots(slots)
   }
 
   return (
@@ -1599,7 +1677,29 @@ function RestaurantDemoPage() {
           <div className="booking-list">
             {bookings.map((booking) => (
               <article key={booking.code}>
-                <strong>{booking.code}</strong>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                  <strong>{booking.code}</strong>
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(booking.code)}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: 'var(--color-ruby, #ff5b5b)',
+                      cursor: 'pointer',
+                      fontSize: '0.8rem',
+                      opacity: 0.85,
+                      padding: '2px 6px',
+                      borderRadius: '4px',
+                      transition: 'opacity 0.2s',
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.opacity = 1}
+                    onMouseLeave={(e) => e.currentTarget.style.opacity = 0.85}
+                    aria-label={`Eliminar reservación ${booking.code}`}
+                  >
+                    Eliminar
+                  </button>
+                </div>
                 <p>{booking.name} - {booking.people} personas</p>
                 <p>{booking.date} - {booking.slot} - {booking.area}</p>
               </article>
