@@ -1504,15 +1504,18 @@ function RestaurantDemoPage() {
       return
     }
 
-    const code = `ALP-${Math.floor(1000 + Math.random() * 9000)}`
+    const code = `ALPHA-${Math.random().toString(36).substring(2, 8).toUpperCase()}`
 
     const payload = {
       codigo: code,
       nombre_cliente: form.name,
+      telefono: form.phone,
       telefono_cliente: form.phone,
       fecha: form.date,
       hora: form.slot,
-      personas: form.people,
+      personas: Number(form.people),
+      area: form.area,
+      notas: form.notes,
       telefono_empresa: '523312345678',
     }
 
